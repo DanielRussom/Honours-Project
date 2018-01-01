@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/dalru/Downloads/anji_2_01/anji_2_01/lib/jgap.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dalru/Downloads/anji_2_01/anji_2_01/lib/anji.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dalru/Downloads/anji_2_01/anji_2_01/lib/log4j.jar"/>
+	<classpathentry kind="lib" path="C:/Users/daniel/Downloads/anji_2_01/lib/jgap.jar"/>
+	<classpathentry kind="lib" path="C:/Users/daniel/Downloads/anji_2_01/lib/anji.jar"/>
+	<classpathentry kind="lib" path="C:/Users/daniel/Downloads/anji_2_01/lib/log4j.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

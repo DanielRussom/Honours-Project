@@ -216,10 +216,21 @@ public class Main extends Application {
 		return gameRootLayoutController;
 	}
 
+	/**
+	 * Returns the frame thread controller.
+	 * 
+	 * @return frameThreadController
+	 */
 	public static FrameThreadController getFrameThreadController() {
 		return frameThreadController;
 	}
 
+	/**
+	 * Sets the frame thread controller
+	 * 
+	 * @param frameThreadController
+	 *            - Frame thread controller
+	 */
 	public static void setFrameThreadController(FrameThreadController frameThreadController) {
 		Main.frameThreadController = frameThreadController;
 	}
