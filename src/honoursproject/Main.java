@@ -2,6 +2,11 @@ package honoursproject;
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
+
+import com.anji.neat.Evolver;
+import com.anji.util.Properties;
+
 import honoursproject.util.GameScreenLoader;
 import honoursproject.util.KeyboardReciever;
 import honoursproject.view.GameRootLayoutController;
@@ -25,9 +30,15 @@ public class Main extends Application {
 	public static boolean test = true;
 	public static double testMultiple = 0.75;
 	public static double testValue = 20;
-
-	public static void main(String[] args) {
-		launch(args);
+	private static Logger logger = Logger.getLogger(Evolver.class);
+	
+	public static void main(String[] args) throws Exception {
+		//launch(args);
+		
+		Properties props = new Properties("honoursproject/anji/properties.txt");
+//		Evolver evolver = new Evolver();
+//		evolver.init(props);
+//		evolver.run();
 	}
 
 	/**
