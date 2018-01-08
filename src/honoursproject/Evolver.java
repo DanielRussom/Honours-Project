@@ -1,5 +1,10 @@
 package honoursproject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 import org.jgap.BulkFitnessFunction;
 import org.jgap.Chromosome;
@@ -63,6 +68,28 @@ public class Evolver implements Configurable {
 		Properties props = new Properties("honoursproject/anji/properties.txt");
 		Evolver evolver = new Evolver();
 		evolver.init(props);
+		evolver.run();
+
+	}
+
+	private void run() {
+		// run start time
+		Date runStartDate = Calendar.getInstance().getTime();
+		logger.info("Run: start");
+		DateFormat fmt = new SimpleDateFormat("HH:mm:ss");
+		// initialize result data
+		int generationOfFirstSolution = -1;
+		champ = genotype.getFittestChromosome();
+		double adjustedFitness = (maxFitness > 0 ? champ.getFitnessValue() / maxFitness : champ.getFitnessValue());
+		// generations
+		for (int generation = 0; (generation < numEvolutions && adjustedFitness < targetFitness); ++generation) {
+			Date generationStartDate = Calendar.getInstance().getTime();
+			logger.info("Generation " + generation + ": start");
+			
+			 // next generation
+            genotype.evolve();
+			
+		}
 	}
 
 	// WORKS WITH NO ERROR
@@ -118,4 +145,34 @@ public class Evolver implements Configurable {
 		}
 	}
 
+	/**
+	 * @return champion of last generation
+	 */
+	public Chromosome getChamp() {
+		return champ;
+	}
+
+	/**
+	 * Fitness of current champ, 0 ... 1
+	 *
+	 * @return maximum fitness value
+	 */
+	public double getChampAdjustedFitness() {
+		return (champ == null) ? 0d
+				: (double) champ.getFitnessValue() / config.getBulkFitnessFunction().getMaxFitnessValue();
+	}
+
+	/**
+	 * @return target fitness value, 0 ... 1
+	 */
+	public double getTargetFitness() {
+		return targetFitness;
+	}
+
+	/**
+	 * @return threshold fitness value, 0 ... 1
+	 */
+	public double getThresholdFitness() {
+		return thresholdFitness;
+	}
 }

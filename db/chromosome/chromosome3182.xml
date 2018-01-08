@@ -1,0 +1,15 @@
+<chromosome id="3182" primary-parent-id="2827"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="out" activation="sigmoid"/>
+<neuron id="4" type="out" activation="sigmoid"/>
+<neuron id="5" type="out" activation="sigmoid"/>
+<neuron id="6" type="out" activation="sigmoid"/>
+<connection id="218" src-id="1" dest-id="6" weight="-1.7210906860152582"/>
+<connection id="231" src-id="2" dest-id="3" weight="-4.449492263640129"/>
+<connection id="232" src-id="0" dest-id="4" weight="0.3132225275039673"/>
+<connection id="240" src-id="2" dest-id="4" weight="1.930275360501667"/>
+<neuron id="419" type="hid" activation="sigmoid"/>
+<connection id="421" src-id="419" dest-id="5" weight="-5.786805826451454"/>
+<connection id="778" src-id="1" dest-id="419" weight="-0.25232050892218383"/>
+</chromosome>
