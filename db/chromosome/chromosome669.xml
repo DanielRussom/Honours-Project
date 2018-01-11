@@ -1,0 +1,10 @@
+<chromosome id="669" primary-parent-id="297"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="out" activation="sigmoid"/>
+<neuron id="4" type="out" activation="sigmoid"/>
+<neuron id="5" type="out" activation="sigmoid"/>
+<neuron id="6" type="out" activation="sigmoid"/>
+<connection id="244" src-id="0" dest-id="3" weight="-1.3214543683270936"/>
+<connection id="253" src-id="0" dest-id="4" weight="-0.3919893503189087"/>
+</chromosome>

@@ -1,0 +1,10 @@
+<chromosome id="614" primary-parent-id="358"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="out" activation="sigmoid"/>
+<neuron id="4" type="out" activation="sigmoid"/>
+<neuron id="5" type="out" activation="sigmoid"/>
+<neuron id="6" type="out" activation="sigmoid"/>
+<connection id="228" src-id="1" dest-id="3" weight="-0.25802848132818956"/>
+<connection id="229" src-id="1" dest-id="5" weight="2.5674973905668343"/>
+</chromosome>

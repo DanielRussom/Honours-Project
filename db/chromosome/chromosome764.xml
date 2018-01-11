@@ -1,0 +1,14 @@
+<chromosome id="764" primary-parent-id="472"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="out" activation="sigmoid"/>
+<neuron id="4" type="out" activation="sigmoid"/>
+<neuron id="5" type="out" activation="sigmoid"/>
+<neuron id="6" type="out" activation="sigmoid"/>
+<connection id="219" src-id="1" dest-id="4" weight="1.232877402757075"/>
+<connection id="228" src-id="1" dest-id="3" weight="-2.268025029844905"/>
+<connection id="251" src-id="3" dest-id="3" weight="-2.8223835987141994"/>
+<neuron id="425" type="hid" activation="sigmoid"/>
+<connection id="426" src-id="1" dest-id="425" weight="-0.04985600411709412"/>
+<connection id="427" src-id="425" dest-id="5" weight="2.5404055664819407"/>
+</chromosome>

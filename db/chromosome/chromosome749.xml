@@ -1,0 +1,12 @@
+<chromosome id="749" primary-parent-id="340"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="out" activation="sigmoid"/>
+<neuron id="4" type="out" activation="sigmoid"/>
+<neuron id="5" type="out" activation="sigmoid"/>
+<neuron id="6" type="out" activation="sigmoid"/>
+<connection id="225" src-id="3" dest-id="6" weight="1.6146954381793566"/>
+<neuron id="602" type="hid" activation="sigmoid"/>
+<connection id="603" src-id="2" dest-id="602" weight="-0.7417049025695852"/>
+<connection id="604" src-id="602" dest-id="3" weight="4.5644359086079636"/>
+</chromosome>

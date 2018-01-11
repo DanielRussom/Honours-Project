@@ -1,0 +1,10 @@
+<chromosome id="524" primary-parent-id="20" secondary-parent-id="33"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="out" activation="sigmoid"/>
+<neuron id="4" type="out" activation="sigmoid"/>
+<neuron id="5" type="out" activation="sigmoid"/>
+<neuron id="6" type="out" activation="sigmoid"/>
+<connection id="217" src-id="2" dest-id="6" weight="-0.6842952006934838"/>
+<connection id="415" src-id="6" dest-id="6" weight="-0.029083346893747905"/>
+</chromosome>

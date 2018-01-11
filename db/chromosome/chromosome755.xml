@@ -1,0 +1,10 @@
+<chromosome id="755" primary-parent-id="290"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="out" activation="sigmoid"/>
+<neuron id="4" type="out" activation="sigmoid"/>
+<neuron id="5" type="out" activation="sigmoid"/>
+<neuron id="6" type="out" activation="sigmoid"/>
+<connection id="236" src-id="0" dest-id="5" weight="-1.4690072752613836"/>
+<connection id="253" src-id="0" dest-id="4" weight="-1.4698489667438284"/>
+</chromosome>
