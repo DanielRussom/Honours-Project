@@ -15,7 +15,9 @@ import com.anji.Copyright;
 import com.anji.integration.LogEventListener;
 import com.anji.integration.PersistenceEventListener;
 import com.anji.integration.PresentationEventListener;
+import com.anji.neat.NeatChromosomeUtility;
 import com.anji.neat.NeatConfiguration;
+import com.anji.neat.NeuronType;
 import com.anji.persistence.Persistence;
 import com.anji.run.Run;
 import com.anji.util.Configurable;
@@ -85,11 +87,45 @@ public class Evolver implements Configurable {
 		for (int generation = 0; (generation < numEvolutions && adjustedFitness < targetFitness); ++generation) {
 			Date generationStartDate = Calendar.getInstance().getTime();
 			logger.info("Generation " + generation + ": start");
-			
-			 // next generation
-            genotype.evolve();
-			
+
+			// next generation
+			genotype.evolve();
+			// result data
+			champ = genotype.getFittestChromosome();
+
+			adjustedFitness = (maxFitness > 0 ? (double) champ.getFitnessValue() / maxFitness
+					: champ.getFitnessValue());
+			if (adjustedFitness >= thresholdFitness && generationOfFirstSolution == -1) {
+				generationOfFirstSolution = generation;
+			}
+
+			// generation finish
+			Date generationEndDate = Calendar.getInstance().getTime();
+			long durationMillis = generationEndDate.getTime() - generationStartDate.getTime();
+			logger.info("Generation " + generation + ": end [" + fmt.format(generationStartDate) + " - "
+					+ fmt.format(generationEndDate) + "] [" + durationMillis + "]");
 		}
+		// run finish
+		config.getEventManager().fireGeneticEvent(new GeneticEvent(GeneticEvent.RUN_COMPLETED_EVENT, genotype));
+		logConclusion(generationOfFirstSolution, champ);
+		Date runEndDate = Calendar.getInstance().getTime();
+		long durationMillis = runEndDate.getTime() - runStartDate.getTime();
+		logger.info("Run: end [" + fmt.format(runStartDate) + " - " + fmt.format(runEndDate) + "] [" + durationMillis
+				+ "]");
+	}
+
+	/**
+	 * Log summary data of run including generation in which the first solution
+	 * occurred, and the champion of the final generation.
+	 *
+	 * @param generationOfFirstSolution
+	 * @param champ
+	 */
+	private static void logConclusion(int generationOfFirstSolution, Chromosome champ) {
+		logger.info("generation of first solution == " + generationOfFirstSolution);
+		logger.info("champ # connections == " + NeatChromosomeUtility.getConnectionList(champ.getAlleles()).size());
+		logger.info("champ # hidden nodes == "
+				+ NeatChromosomeUtility.getNeuronList(champ.getAlleles(), NeuronType.HIDDEN).size());
 	}
 
 	// WORKS WITH NO ERROR
@@ -98,7 +134,6 @@ public class Evolver implements Configurable {
 		boolean doReset = props.getBooleanProperty(RESET_KEY, false);
 		if (doReset) {
 			logger.warn("Resetting previous run!");
-			// TODO Try removing . from file paths in properties?
 			Reset resetter = new Reset(props);
 			resetter.setUserInteraction(false);
 			resetter.reset();

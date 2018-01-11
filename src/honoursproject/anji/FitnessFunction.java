@@ -111,23 +111,23 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			}
 			switch (maxI) {
 			case 0:
-				System.out.println("CASE LEFT");
+				//System.out.println("CASE LEFT");
 				//Player.setSingleTurnXVel(test);
 				break;
 			case 1:
-				System.out.println("CASE RIGHT");
+				//System.out.println("CASE RIGHT");
 				//Controller.testValue += 1;
 				break;
 			case 2:
-				System.out.println("CASE UP");
+				//System.out.println("CASE UP");
 				//Controller.testValue += 2;
 				break;
 			case 3:
-				System.out.println("CASE DOWN");
+				//System.out.println("CASE DOWN");
 				//Controller.testValue += 4;
 				break;
 			case 4: 
-				System.out.println("CASE DON'T MOVE");
+				//System.out.println("CASE DON'T MOVE");
 				break;
 			default:
 				throw new RuntimeException("This shouldn't happen");

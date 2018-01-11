@@ -1,8 +1,0 @@
-<chromosome id="18"><neuron id="0" type="in" activation="linear"/>
-<neuron id="1" type="in" activation="linear"/>
-<neuron id="2" type="in" activation="linear"/>
-<neuron id="3" type="out" activation="sigmoid"/>
-<neuron id="4" type="out" activation="sigmoid"/>
-<neuron id="5" type="out" activation="sigmoid"/>
-<neuron id="6" type="out" activation="sigmoid"/>
-</chromosome>
