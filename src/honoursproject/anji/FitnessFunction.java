@@ -39,6 +39,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 	public void init(Properties props) throws Exception {
 		try {
 			factory = (ActivatorTranscriber) props.singletonObjectProperty(ActivatorTranscriber.class);
+			maxTimesteps = props.getIntProperty(TIMESTEPS_KEY, DEFAULT_TIMESTEPS);
 			numTrials = props.getIntProperty(NUM_TRIALS_KEY, DEFAULT_NUM_TRIALS);
 			Randomizer randomizer = (Randomizer) props.singletonObjectProperty(Randomizer.class);
 			rand = randomizer.getRand();
@@ -80,7 +81,6 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 				// if (showGame) {
 				// break;
 				// }
-				System.out.println(i + " trial ran!");
 			}
 			c.setFitnessValue(fitness);
 		} catch (Throwable e) {
@@ -88,16 +88,17 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			c.setFitnessValue(0);
 		}
 	}
-	
+
 	private int singleTrial(Activator activator) {
-		//TODO
+		// TODO
 		HashSet<String> history = new HashSet<>();
 		int fitness = 0;
 		int stuckCounter = 100;
-		
+
+		// Run the simulation
 		int currentTimestep = 0;
-		
 		for (currentTimestep = 0; currentTimestep < maxTimesteps; currentTimestep++) {
+			
 			double[] networkInput = getNetworkInput();
 
 			double[] networkOutput = activator.next(networkInput);
@@ -111,23 +112,23 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			}
 			switch (maxI) {
 			case 0:
-				//System.out.println("CASE LEFT");
-				//Player.setSingleTurnXVel(test);
+				// System.out.println("CASE LEFT");
+				// Player.setSingleTurnXVel(test);
 				break;
 			case 1:
-				//System.out.println("CASE RIGHT");
-				//Controller.testValue += 1;
+				// System.out.println("CASE RIGHT");
+				// Controller.testValue += 1;
 				break;
 			case 2:
-				//System.out.println("CASE UP");
-				//Controller.testValue += 2;
+				// System.out.println("CASE UP");
+				// Controller.testValue += 2;
 				break;
 			case 3:
-				//System.out.println("CASE DOWN");
-				//Controller.testValue += 4;
+				// System.out.println("CASE DOWN");
+				// Controller.testValue += 4;
 				break;
-			case 4: 
-				//System.out.println("CASE DON'T MOVE");
+			case 4:
+				// System.out.println("CASE DON'T MOVE");
 				break;
 			default:
 				throw new RuntimeException("This shouldn't happen");
@@ -142,7 +143,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 		return null;
 	}
 
-	//TODO
+	// TODO
 	@Override
 	public int getMaxFitnessValue() {
 		return numTrials * maxTimesteps;
