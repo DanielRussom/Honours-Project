@@ -111,6 +111,33 @@ public class Player extends Element{
 		updatePosition();
 	}
 
+		/**
+		 * Moves left for a single turn
+		 */
+		public void moveLeft() {
+			singleTurnXVel -= moveSpeed;
+		}
+
+		/**
+		 * Moves right for a single turn
+		 */
+		public void moveRight() {
+			singleTurnXVel += moveSpeed;
+		}
+
+		/**
+		 * Moves down for a single turn
+		 */
+		public void moveDown() {
+			singleTurnYVel -= moveSpeed;
+		}
+
+		/**
+		 * Moves up for a single turn
+		 */
+		public void moveUp() {
+			singleTurnYVel += moveSpeed;
+		}
 	
 	public Point checkCollision(Point newPosition) {
 		// Point test = super.checkCollision(newPosition);

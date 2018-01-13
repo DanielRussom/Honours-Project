@@ -71,7 +71,7 @@ public class Evolver implements Configurable {
 		Evolver evolver = new Evolver();
 		evolver.init(props);
 		evolver.run();
-
+		Main.showTrainingArea();
 	}
 
 	private void run() {

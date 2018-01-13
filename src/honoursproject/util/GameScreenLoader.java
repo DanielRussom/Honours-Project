@@ -17,9 +17,6 @@ public class GameScreenLoader {
 
 	public static void initGameElements(AnchorPane gamePane) {
 		ArrayList<Node> nodesToAdd = new ArrayList<Node>();
-		// for(Node current : gamePane.getChildren()){
-		// initialNodes.add(current);
-		// }
 
 		for (Node current : gamePane.getChildren()) {
 			System.out.println(current.getId());
@@ -31,10 +28,7 @@ public class GameScreenLoader {
 				player.setXPosition(current.getLayoutX());
 				player.setYPosition(current.getLayoutY());
 				player.moveTo(new Point((int) player.getXPosition(), (int) player.getYPosition()));
-				// current.setId("eh");
 				nodesToAdd.add(player.getImage());
-				// Main.
-				// currentPlayer = new Player(gameScreenController.getPlayer());
 				current.setVisible(!current.isVisible());
 				continue;
 			}
@@ -58,7 +52,6 @@ public class GameScreenLoader {
 				GameController.addActiveElement(enemy);
 			}
 		}
-
 		Main.getGameScreenController().addNode(nodesToAdd);
 	}
 

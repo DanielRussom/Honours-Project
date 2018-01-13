@@ -33,9 +33,9 @@ public class Main extends Application {
 	private static Logger logger = Logger.getLogger(Evolver.class);
 	
 	public static void main(String[] args) throws Exception {
-		//launch(args);
+		launch(args);
 		
-		Properties props = new Properties("honoursproject/anji/properties.txt");
+		//Properties props = new Properties("honoursproject/anji/properties.txt");
 //		Evolver evolver = new Evolver();
 //		evolver.init(props);
 //		evolver.run();

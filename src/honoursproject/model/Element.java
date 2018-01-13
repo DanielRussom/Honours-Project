@@ -32,39 +32,6 @@ public class Element {
 		setYPosition(image.getLayoutY() + image.getTranslateY());
 	}
 
-	// TODO Decide if should implement
-	public void moveLeft() {
-
-	}
-
-	public void stopMoveLeft() {
-
-	}
-
-	public void moveRight() {
-
-	}
-
-	public void stopMoveRight() {
-
-	}
-
-	public void moveDown() {
-
-	}
-
-	public void stopMoveDown() {
-
-	}
-
-	public void moveUp() {
-
-	}
-
-	public void stopMoveUp() {
-
-	}
-
 	/**
 	 * Moves this element to the specified location.
 	 * 

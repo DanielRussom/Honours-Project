@@ -139,8 +139,10 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 	}
 
 	private double[] getNetworkInput() {
-		// TODO Get inputs from game
-		return null;
+		//TODO Change PH value
+		double[] input = new double[100];
+		
+		return input;
 	}
 
 	// TODO
