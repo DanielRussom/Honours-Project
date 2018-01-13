@@ -168,13 +168,21 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			}
 		}
 		int sizePerEnemy = 3;
-		int i = 0;
-		for (i = 0; i < enemies.size(); i += 1) {
+		for (int i = 0; i < enemies.size(); i ++) {
 			input[(i + 1) * sizePerEnemy] = enemies.get(i).getXPosition();
 			input[((i + 1) * sizePerEnemy) + 1] = enemies.get(i).getYPosition();
 			input[((i + 1) * sizePerEnemy) + 2] = ((Enemy) enemies.get(i)).getHealth();
 		}
-		// TODO Projectiles
+		int sizePerProjectile = 4;
+		int offset = (enemies.size()*3)+3;
+		for(int i = 0; i < projectiles.size(); i++) {
+			input[offset+(i*sizePerProjectile)] = projectiles.get(i).getXPosition();
+			input[offset+(i*sizePerProjectile)+1] = projectiles.get(i).getYPosition();
+			input[offset+(i*sizePerProjectile)+2] = projectiles.get(i).getXVel();
+			input[offset+(i*sizePerProjectile)+3] = projectiles.get(i).getYVel();
+			
+		}
+		// TODO TIDY
 		System.out.println("TEST " + input);
 		return input;
 	}
