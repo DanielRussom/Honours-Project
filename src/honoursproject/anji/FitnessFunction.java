@@ -1,5 +1,6 @@
 package honoursproject.anji;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -18,6 +19,10 @@ import com.anji.util.Properties;
 import com.anji.util.Randomizer;
 
 import honoursproject.GameController;
+import honoursproject.model.Element;
+import honoursproject.model.Enemy;
+import honoursproject.model.Player;
+import honoursproject.model.Projectile;
 
 public class FitnessFunction implements BulkFitnessFunction, Configurable {
 	private final static String TIMESTEPS_KEY = "honours.timesteps";
@@ -100,7 +105,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 		// Run the simulation
 		int currentTimestep = 0;
 		for (currentTimestep = 0; currentTimestep < maxTimesteps; currentTimestep++) {
-			
+
 			double[] networkInput = getNetworkInput();
 
 			double[] networkOutput = activator.next(networkInput);
@@ -141,9 +146,36 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 	}
 
 	private double[] getNetworkInput() {
-		//TODO Change PH value
+		// TODO Change PH value
 		double[] input = new double[100];
-		System.out.println(GameController.getActiveElements());
+		// System.out.println(GameController.getActiveElements());
+		Player player = GameController.getCurrentPlayer();
+		input[0] = player.getXPosition();
+		input[1] = player.getYPosition();
+		input[2] = player.getHealth();
+		ArrayList<Element> enemies = new ArrayList<Element>();
+		ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+
+		for (Element current : GameController.getActiveElements()) {
+			if (current instanceof Enemy) {
+				enemies.add(current);
+			}
+			if (current instanceof Projectile) {
+				Projectile currentProjectile = (Projectile) current;
+				if (currentProjectile.getShooter() instanceof Enemy) {
+					projectiles.add(currentProjectile);
+				}
+			}
+		}
+		int sizePerEnemy = 3;
+		int i = 0;
+		for (i = 0; i < enemies.size(); i += 1) {
+			input[(i + 1) * sizePerEnemy] = enemies.get(i).getXPosition();
+			input[((i + 1) * sizePerEnemy) + 1] = enemies.get(i).getYPosition();
+			input[((i + 1) * sizePerEnemy) + 2] = ((Enemy) enemies.get(i)).getHealth();
+		}
+		// TODO Projectiles
+		System.out.println("TEST " + input);
 		return input;
 	}
 

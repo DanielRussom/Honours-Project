@@ -64,6 +64,13 @@ public class Projectile extends Element {
 		// checkCollision();
 	}
 
+	/**
+	 * @return the shooter
+	 */
+	public Element getShooter() {
+		return shooter;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

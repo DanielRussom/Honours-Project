@@ -126,6 +126,13 @@ public class Player extends Element{
 		}
 
 		/**
+		 * @return the health
+		 */
+		public int getHealth() {
+			return health;
+		}
+
+		/**
 		 * Moves down for a single turn
 		 */
 		public void moveDown() {
