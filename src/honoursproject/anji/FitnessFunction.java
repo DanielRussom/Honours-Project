@@ -17,6 +17,8 @@ import com.anji.util.Configurable;
 import com.anji.util.Properties;
 import com.anji.util.Randomizer;
 
+import honoursproject.GameController;
+
 public class FitnessFunction implements BulkFitnessFunction, Configurable {
 	private final static String TIMESTEPS_KEY = "honours.timesteps";
 	private final static String NUM_TRIALS_KEY = "honours.trials";
@@ -141,7 +143,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 	private double[] getNetworkInput() {
 		//TODO Change PH value
 		double[] input = new double[100];
-		
+		System.out.println(GameController.getActiveElements());
 		return input;
 	}
 
