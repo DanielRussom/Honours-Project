@@ -4,7 +4,7 @@ import honoursproject.Main;
 
 public class TrainingMenuController {
 
-	public void playAvoidingDamageTraining() {
+	public void playAvoidingDamageTraining() throws Throwable {
 		Main.showGameRoot();
 		Main.showTrainingArea();
 	}

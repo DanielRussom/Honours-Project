@@ -178,8 +178,9 @@ public class Main extends Application {
 
 	/**
 	 * Displays the training area.
+	 * @throws Throwable 
 	 */
-	public static void showTrainingArea() {
+	public static void showTrainingArea() throws Throwable {
 		try {
 			GameController.clearActiveElements();
 			// Load the training area from FXML file
@@ -195,6 +196,7 @@ public class Main extends Application {
 			// Begins the FrameThreadController
 			setFrameThreadController(new FrameThreadController());
 			getFrameThreadController().start();
+			getFrameThreadController().triggerEvolver = true;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

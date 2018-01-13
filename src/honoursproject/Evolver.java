@@ -1,5 +1,6 @@
 package honoursproject;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -71,7 +72,18 @@ public class Evolver implements Configurable {
 		Evolver evolver = new Evolver();
 		evolver.init(props);
 		evolver.run();
-		Main.showTrainingArea();
+		// Main.showTrainingArea();
+	}
+
+	public static void main2() throws Exception {
+		// TODO Try catch instead of throws
+		System.out.println(Copyright.STRING);
+		// Loads in properties file
+		Properties props = new Properties("honoursproject/anji/properties.txt");
+		Evolver evolver = new Evolver();
+		evolver.init(props);
+		evolver.run();
+		// Main.showTrainingArea();
 	}
 
 	private void run() {

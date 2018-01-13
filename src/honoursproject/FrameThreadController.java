@@ -7,7 +7,8 @@ import javafx.animation.AnimationTimer;
 
 public class FrameThreadController extends AnimationTimer {
 
-	int setupTime = 1;
+	int setupTime = 10;
+	boolean triggerEvolver = false;
 
 	@Override
 	public void handle(long now) {
@@ -26,6 +27,15 @@ public class FrameThreadController extends AnimationTimer {
 		if (setupTime > 0) {
 			setupTime -= 1;
 			return;
+		}
+		if(triggerEvolver) {
+			try {
+				Evolver.main2();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			triggerEvolver = false;
 		}
 		// Creates a local copy of current active elements
 		ArrayList<Element> activeElements = new ArrayList<Element>();
