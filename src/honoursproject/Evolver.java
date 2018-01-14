@@ -1,5 +1,7 @@
 package honoursproject;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -52,6 +54,8 @@ public class Evolver implements Configurable {
 	private int maxFitness = 0;
 
 	private Persistence db = null;
+	
+	public static BufferedWriter writer;
 
 	public Evolver() {
 		super();
@@ -77,6 +81,7 @@ public class Evolver implements Configurable {
 
 	public static void main2() throws Exception {
 		// TODO Try catch instead of throws
+		writer = new BufferedWriter(new FileWriter("Fitness"));
 		System.out.println(Copyright.STRING);
 		// Loads in properties file
 		Properties props = new Properties("honoursproject/anji/properties.txt");
@@ -84,6 +89,7 @@ public class Evolver implements Configurable {
 		evolver.init(props);
 		evolver.run();
 		// Main.showTrainingArea();
+		writer.close();
 	}
 
 	private void run() {
@@ -100,17 +106,22 @@ public class Evolver implements Configurable {
 			Date generationStartDate = Calendar.getInstance().getTime();
 			logger.info("Generation " + generation + ": start");
 
+			System.out.println();
 			// next generation
 			genotype.evolve();
 			// result data
 			champ = genotype.getFittestChromosome();
-
 			adjustedFitness = (maxFitness > 0 ? (double) champ.getFitnessValue() / maxFitness
 					: champ.getFitnessValue());
 			if (adjustedFitness >= thresholdFitness && generationOfFirstSolution == -1) {
 				generationOfFirstSolution = generation;
 			}
-
+			try {
+				writer.write(champ.getFitnessValue() + "\n");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// generation finish
 			Date generationEndDate = Calendar.getInstance().getTime();
 			long durationMillis = generationEndDate.getTime() - generationStartDate.getTime();
