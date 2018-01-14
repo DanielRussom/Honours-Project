@@ -90,7 +90,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 		GameScreenLoader.initGameElements(trainingArea);
 		GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
 	}
-	
+
 	/**
 	 * Evaluate chromosome and set fitness.
 	 *
@@ -103,16 +103,30 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			// calculate fitness, sum of multiple trials
 			int fitness = 0;
 			for (int i = 0; i < numTrials; i++) {
+				GameController.getActiveElements().clear();
+				for (int j = 0; j < GameController.resetState.size(); j++) {
+					Element newObject = GameController.resetState.get(j).clone();
+					GameController.getActiveElements().add(newObject);
+					if(newObject instanceof Player) {
+						GameController.setCurrentPlayer((Player)newObject);
+					}
+					//GameController.getActiveElements().add(GameController.resetState.get(j).clone());
+				}
+				//System.out.println(GameController.getCurrentPlayer().getXPosition());
+				
+				//System.out.println(GameController.getActiveElements() + " : AAAA : " + GameController.resetState);
 				// Loops through trials
 				fitness += singleTrial(activator);
-				//GameController.endGame();
-				//test2();
-				//System.out.println("TEST + " +  GameController.getCurrentPlayer().getHealth());
+				//System.out.println(GameController.getActiveElements() + " : BBBB : " + GameController.resetState);
+				// GameController.endGame();
+				// test2();
+				// System.out.println("TEST + " +
+				// GameController.getCurrentPlayer().getHealth());
 				// if (showGame) {
 				// break;
 				// }
 
-				//TODO Reset game
+				// TODO Reset game
 			}
 			c.setFitnessValue(fitness);
 		} catch (Throwable e) {
@@ -145,6 +159,8 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			switch (maxI) {
 			case 0:
 				// System.out.println("CASE LEFT");
+
+				System.out.println("BEFORE " + GameController.getCurrentPlayer().getXPosition());
 				GameController.getCurrentPlayer().moveLeft();
 				break;
 			case 1:
@@ -165,21 +181,24 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			default:
 				throw new RuntimeException("This shouldn't happen");
 			}
-//			if (GameController.getCurrentPlayer().getXPosition() > 0) {
-//				System.out.println(GameController.getCurrentPlayer().getXPosition() + " "
-//						+ GameController.getCurrentPlayer().getYPosition());
-//			}
+			// if (GameController.getCurrentPlayer().getXPosition() > 0) {
+			// System.out.println(GameController.getCurrentPlayer().getXPosition() + " "
+			// + GameController.getCurrentPlayer().getYPosition());
+			// }
 			GameController.test();
+
+			System.out.println("AFTER " + GameController.getCurrentPlayer().getXPosition());
 			fitness = GameController.getCurrentPlayer().getHealth();
-			String pos = GameController.getCurrentPlayer().getXPosition() + ":"+GameController.getCurrentPlayer().getYPosition();
-			if(history.contains(pos)) {
+			String pos = GameController.getCurrentPlayer().getXPosition() + ":"
+					+ GameController.getCurrentPlayer().getYPosition();
+			if (history.contains(pos)) {
 				stuckCounter--;
 			} else {
 				stuckCounter = 100;
 				history.add(pos);
 			}
-			
-			if(stuckCounter <=0 || GameController.getCurrentPlayer().getHealth()<=0) {
+
+			if (stuckCounter <= 0 || GameController.getCurrentPlayer().getHealth() <= 0) {
 				break;
 			}
 		}

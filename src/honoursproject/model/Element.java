@@ -8,7 +8,7 @@ import honoursproject.Main;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 
-public class Element {
+public class Element implements Cloneable {
 	protected double xVel = 0;
 	protected double xVelDecimal = 0;
 	protected double yVel = 0;
@@ -25,6 +25,13 @@ public class Element {
 		//TODO PH?
 	}
 
+	//INCASE
+	@Override
+	public Element clone() throws CloneNotSupportedException {
+
+	    return (Element) super.clone();
+	}
+	
 	public Element(Node image) {
 		super();
 		this.image = image;

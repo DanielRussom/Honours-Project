@@ -10,6 +10,7 @@ public class GameController {
 	private static ArrayList<Element> elementsToRemove = new ArrayList<Element>();
 	private static Player currentPlayer;
 	private static Player currentPlayer2;
+	public static ArrayList<Element> resetState = new ArrayList<Element>();
 
 	public static void endGame() {
 		Main.getFrameThreadController().stop();

@@ -31,14 +31,14 @@ public class Main extends Application {
 	public static double testMultiple = 0.75;
 	public static double testValue = 20;
 	private static Logger logger = Logger.getLogger(Evolver.class);
-	
+
 	public static void main(String[] args) throws Exception {
 		launch(args);
-		
-		//Properties props = new Properties("honoursproject/anji/properties.txt");
-//		Evolver evolver = new Evolver();
-//		evolver.init(props);
-//		evolver.run();
+
+		// Properties props = new Properties("honoursproject/anji/properties.txt");
+		// Evolver evolver = new Evolver();
+		// evolver.init(props);
+		// evolver.run();
 	}
 
 	/**
@@ -178,7 +178,8 @@ public class Main extends Application {
 
 	/**
 	 * Displays the training area.
-	 * @throws Throwable 
+	 * 
+	 * @throws Throwable
 	 */
 	public static void showTrainingArea() throws Throwable {
 		try {
@@ -248,6 +249,12 @@ public class Main extends Application {
 		Main.frameThreadController = frameThreadController;
 	}
 
+	/**
+	 * Sets the game screen controller
+	 * 
+	 * @param controller
+	 *            - Game Screen Controller
+	 */
 	public static void setGameScreenController(GameScreenController controller) {
 		gameScreenController = controller;
 	}

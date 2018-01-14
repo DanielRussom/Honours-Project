@@ -30,6 +30,9 @@ public class FrameThreadController extends AnimationTimer {
 		}
 		if(triggerEvolver) {
 			try {
+				for(int i = 0; i < GameController.getActiveElements().size(); i++) {
+					GameController.resetState.add(GameController.getActiveElements().get(i).clone());
+				}
 				Evolver.main2();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
