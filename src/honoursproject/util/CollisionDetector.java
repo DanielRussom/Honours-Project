@@ -8,6 +8,14 @@ import javafx.scene.shape.Rectangle;
 
 public class CollisionDetector {
 	// TODO
+	static double containerWidth = 0;
+	static double containerHeight = 0;
+
+	public static void initContainerValues(Element element) {
+		containerWidth = element.getImage().getParent().getLayoutBounds().getWidth();
+		containerHeight = element.getImage().getParent().getLayoutBounds().getHeight();
+		System.out.println(containerWidth + "," + containerHeight + " AAAAAA");
+	}
 
 	/**
 	 * Checks for, and handles, wall collision.
@@ -16,8 +24,8 @@ public class CollisionDetector {
 	 *            - element being checked
 	 */
 	public static void handleBoundaryCollision(Element element) {
-		double containerWidth = element.getImage().getParent().getLayoutBounds().getWidth();
-		double containerHeight = element.getImage().getParent().getLayoutBounds().getHeight();
+		//double containerWidth = element.getImage().getParent().getLayoutBounds().getWidth();
+		//double containerHeight = element.getImage().getParent().getLayoutBounds().getHeight();
 		if (element.getXPosition() < 0) {
 			element.setXPosition(0);
 		} else if (element.getRightSide() > containerWidth) {
@@ -37,8 +45,8 @@ public class CollisionDetector {
 	 *            - projectile being checked
 	 */
 	public static void handleBoundaryCollision(Projectile projectile) {
-		double containerWidth = projectile.getImage().getParent().getLayoutBounds().getWidth();
-		double containerHeight = projectile.getImage().getParent().getLayoutBounds().getHeight();
+		//double containerWidth = projectile.getImage().getParent().getLayoutBounds().getWidth();
+		//double containerHeight = projectile.getImage().getParent().getLayoutBounds().getHeight();
 		Rectangle projectileImage = (Rectangle) projectile.getImage();
 		if (projectile.getXPosition() < 0) {
 			projectileImage.setWidth(projectileImage.getWidth() + projectile.getXPosition());

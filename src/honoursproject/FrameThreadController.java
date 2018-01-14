@@ -3,6 +3,7 @@ package honoursproject;
 import java.util.ArrayList;
 
 import honoursproject.model.Element;
+import honoursproject.util.CollisionDetector;
 import javafx.animation.AnimationTimer;
 
 public class FrameThreadController extends AnimationTimer {
@@ -30,6 +31,8 @@ public class FrameThreadController extends AnimationTimer {
 		}
 		if(triggerEvolver) {
 			try {
+				CollisionDetector.initContainerValues(GameController.getActiveElements().get(0));
+				
 				for(int i = 0; i < GameController.getActiveElements().size(); i++) {
 					GameController.resetState.add(GameController.getActiveElements().get(i).clone());
 				}

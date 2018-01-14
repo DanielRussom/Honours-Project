@@ -160,7 +160,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			case 0:
 				// System.out.println("CASE LEFT");
 
-				System.out.println("BEFORE " + GameController.getCurrentPlayer().getXPosition());
+				//System.out.println("BEFORE " + GameController.getCurrentPlayer().getXPosition());
 				GameController.getCurrentPlayer().moveLeft();
 				break;
 			case 1:
@@ -187,8 +187,8 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			// }
 			GameController.test();
 
-			System.out.println("AFTER " + GameController.getCurrentPlayer().getXPosition());
-			fitness = GameController.getCurrentPlayer().getHealth();
+			//System.out.println("AFTER " + GameController.getCurrentPlayer().getXPosition());
+			fitness = GameController.getCurrentPlayer().getHealth() + currentTimestep;
 			String pos = GameController.getCurrentPlayer().getXPosition() + ":"
 					+ GameController.getCurrentPlayer().getYPosition();
 			if (history.contains(pos)) {
