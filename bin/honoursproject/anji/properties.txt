@@ -5,7 +5,7 @@ run.reset=true
 ###########
 # evolution
 ###########
-num.generations=25
+num.generations=250
 popul.size=200
 topology.mutation.classic=false
 add.connection.mutation.rate=0.02

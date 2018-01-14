@@ -106,10 +106,10 @@ public class Evolver implements Configurable {
 			Date generationStartDate = Calendar.getInstance().getTime();
 			logger.info("Generation " + generation + ": start");
 
-			System.out.println();
 			// next generation
 			genotype.evolve();
 			// result data
+			System.out.println();
 			champ = genotype.getFittestChromosome();
 			adjustedFitness = (maxFitness > 0 ? (double) champ.getFitnessValue() / maxFitness
 					: champ.getFitnessValue());
