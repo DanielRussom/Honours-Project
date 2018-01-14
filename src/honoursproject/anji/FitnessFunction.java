@@ -1,5 +1,6 @@
 package honoursproject.anji;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -19,10 +20,15 @@ import com.anji.util.Properties;
 import com.anji.util.Randomizer;
 
 import honoursproject.GameController;
+import honoursproject.Main;
 import honoursproject.model.Element;
 import honoursproject.model.Enemy;
 import honoursproject.model.Player;
 import honoursproject.model.Projectile;
+import honoursproject.util.GameScreenLoader;
+import honoursproject.view.GameScreenController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
 
 public class FitnessFunction implements BulkFitnessFunction, Configurable {
 	private final static String TIMESTEPS_KEY = "honours.timesteps";
@@ -71,6 +77,20 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 		}
 	}
 
+	public void test2() throws Exception {
+		GameController.clearActiveElements();
+		// Load the training area from FXML file
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("view/TrainingArea.fxml"));
+		AnchorPane trainingArea = (AnchorPane) loader.load();
+		Main.setGameScreenController((GameScreenController) loader.getController());
+		// Displays the game screen into the center of game root layout
+		Main.getGameRootLayoutController().setGameScreen(trainingArea);
+		// Initializes the game elements from the passed in pane
+		GameScreenLoader.initGameElements(trainingArea);
+		GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
+	}
+	
 	/**
 	 * Evaluate chromosome and set fitness.
 	 *
@@ -85,9 +105,14 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			for (int i = 0; i < numTrials; i++) {
 				// Loops through trials
 				fitness += singleTrial(activator);
+				//GameController.endGame();
+				//test2();
+				//System.out.println("TEST + " +  GameController.getCurrentPlayer().getHealth());
 				// if (showGame) {
 				// break;
 				// }
+
+				//TODO Reset game
 			}
 			c.setFitnessValue(fitness);
 		} catch (Throwable e) {
@@ -97,7 +122,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 	}
 
 	private int singleTrial(Activator activator) {
-		// TODO
+		// TODO Change History to list?
 		HashSet<String> history = new HashSet<>();
 		int fitness = 0;
 		int stuckCounter = 100;
@@ -146,6 +171,17 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 //			}
 			GameController.test();
 			fitness = GameController.getCurrentPlayer().getHealth();
+			String pos = GameController.getCurrentPlayer().getXPosition() + ":"+GameController.getCurrentPlayer().getYPosition();
+			if(history.contains(pos)) {
+				stuckCounter--;
+			} else {
+				stuckCounter = 100;
+				history.add(pos);
+			}
+			
+			if(stuckCounter <=0 || GameController.getCurrentPlayer().getHealth()<=0) {
+				break;
+			}
 		}
 		logger.debug("Trial took " + currentTimestep + " steps");
 		return fitness;

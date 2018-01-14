@@ -247,4 +247,8 @@ public class Main extends Application {
 	public static void setFrameThreadController(FrameThreadController frameThreadController) {
 		Main.frameThreadController = frameThreadController;
 	}
+
+	public static void setGameScreenController(GameScreenController controller) {
+		gameScreenController = controller;
+	}
 }
