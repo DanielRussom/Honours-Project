@@ -207,14 +207,14 @@ public class Player extends Element{
 	 */
 	@Override
 	public void handleBeingHit(Element hitter) {
-		System.out.println(toString() + " was hit by " + hitter.toString());
+		//System.out.println(toString() + " was hit by " + hitter.toString());
 		if (hitter instanceof Projectile) {
 			Projectile hittingProjectile = (Projectile) hitter;
 			health -= hittingProjectile.damage;
 		} else if (hitter instanceof Player) {
 			// TODO Tidy melee combat
 			// Player hittingPlayer = (Player) hitter;
-			// health -= hittingPlayer.meleeDamage;
+			health -= ((Player) hitter).meleeDamage;
 			if (hitter.getXPosition() == getRightSide()) {
 				xKnockBack = Main.testValue * -1;
 			} else if (getXPosition() == hitter.getRightSide()) {
@@ -222,13 +222,13 @@ public class Player extends Element{
 			}
 			if (hitter.getYPosition() == getBottomSide()) {
 				yKnockBack = Main.testValue * -1;
-				System.out.println("YVEL");
+				//System.out.println("YVEL");
 			} else if (getYPosition() == hitter.getBottomSide()) {
 				yKnockBack = Main.testValue;
-				System.out.println("YVEL-");
+				//System.out.println("YVEL-");
 			}
 		}
-		System.out.println(toString() + "'s health is now: " + health);
+		//System.out.println(toString() + "'s health is now: " + health);
 		if (this.equals(GameController.getCurrentPlayer())) {
 			Main.getGameRootLayoutController().setLblPlayerHealthValue(health);
 		}

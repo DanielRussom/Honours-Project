@@ -120,19 +120,19 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			switch (maxI) {
 			case 0:
 				// System.out.println("CASE LEFT");
-				// Player.setSingleTurnXVel(test);
+				GameController.getCurrentPlayer().moveLeft();
 				break;
 			case 1:
 				// System.out.println("CASE RIGHT");
-				// Controller.testValue += 1;
+				GameController.getCurrentPlayer().moveRight();
 				break;
 			case 2:
 				// System.out.println("CASE UP");
-				// Controller.testValue += 2;
+				GameController.getCurrentPlayer().moveUp();
 				break;
 			case 3:
 				// System.out.println("CASE DOWN");
-				// Controller.testValue += 4;
+				GameController.getCurrentPlayer().moveDown();
 				break;
 			case 4:
 				// System.out.println("CASE DON'T MOVE");
@@ -140,6 +140,12 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			default:
 				throw new RuntimeException("This shouldn't happen");
 			}
+//			if (GameController.getCurrentPlayer().getXPosition() > 0) {
+//				System.out.println(GameController.getCurrentPlayer().getXPosition() + " "
+//						+ GameController.getCurrentPlayer().getYPosition());
+//			}
+			GameController.test();
+			fitness = GameController.getCurrentPlayer().getHealth();
 		}
 		logger.debug("Trial took " + currentTimestep + " steps");
 		return fitness;
@@ -168,22 +174,22 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			}
 		}
 		int sizePerEnemy = 3;
-		for (int i = 0; i < enemies.size(); i ++) {
+		for (int i = 0; i < enemies.size(); i++) {
 			input[(i + 1) * sizePerEnemy] = enemies.get(i).getXPosition();
 			input[((i + 1) * sizePerEnemy) + 1] = enemies.get(i).getYPosition();
 			input[((i + 1) * sizePerEnemy) + 2] = ((Enemy) enemies.get(i)).getHealth();
 		}
 		int sizePerProjectile = 4;
-		int offset = (enemies.size()*3)+3;
-		for(int i = 0; i < projectiles.size(); i++) {
-			input[offset+(i*sizePerProjectile)] = projectiles.get(i).getXPosition();
-			input[offset+(i*sizePerProjectile)+1] = projectiles.get(i).getYPosition();
-			input[offset+(i*sizePerProjectile)+2] = projectiles.get(i).getXVel();
-			input[offset+(i*sizePerProjectile)+3] = projectiles.get(i).getYVel();
-			
+		int offset = (enemies.size() * 3) + 3;
+		for (int i = 0; i < projectiles.size(); i++) {
+			input[offset + (i * sizePerProjectile)] = projectiles.get(i).getXPosition();
+			input[offset + (i * sizePerProjectile) + 1] = projectiles.get(i).getYPosition();
+			input[offset + (i * sizePerProjectile) + 2] = projectiles.get(i).getXVel();
+			input[offset + (i * sizePerProjectile) + 3] = projectiles.get(i).getYVel();
+
 		}
 		// TODO TIDY
-		System.out.println("TEST " + input);
+		// System.out.println("TEST " + input);
 		return input;
 	}
 

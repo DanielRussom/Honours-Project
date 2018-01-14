@@ -16,6 +16,29 @@ public class GameController {
 		clearActiveElements();
 	}
 
+	public static void test() {
+		// Creates a local copy of current active elements
+		ArrayList<Element> activeElementss = new ArrayList<Element>();
+		for (Element current : GameController.getActiveElements()) {
+			activeElementss.add(current);
+		}
+		// Iterates through each active element
+		for (Element current : activeElementss) {
+			// Skips the current element if it is flagged to be removed
+			if (GameController.getElementsToRemove().contains(current)) {
+				System.out.println("SKIPPED " + current.toString());
+				continue;
+			}
+			// Performs the current element's move
+			current.move();
+		}
+		// Removes all elements flagged to be removed from the global element list
+		GameController.getActiveElements().removeAll(GameController.getElementsToRemove());
+		for (Element currentNode : GameController.getElementsToRemove()) {
+			Main.getGameScreenController().removeNode(currentNode.getImage());
+		}
+	}
+
 	/**
 	 * Returns the active elements ArrayList.
 	 * 
@@ -34,7 +57,7 @@ public class GameController {
 	public static void addActiveElement(Element element) {
 		getActiveElements().add(element);
 	}
-	
+
 	/**
 	 * Clears the list of active elements.
 	 */

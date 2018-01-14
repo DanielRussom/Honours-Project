@@ -1,16 +1,16 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="./graphSpeciesRefresh.xsl" ?>
 <!DOCTYPE run SYSTEM "../run.dtd">
-<run name="honoursproject" timedatestamp="[20180113 17:08:18 - 20180113 17:08:29]" >
+<run name="honoursproject" timedatestamp="[20180114 00:42:45 - 20180114 00:42:56]" >
 <search-parameters>
 <population-size>200</population-size>
 <generations>25</generations>
 </search-parameters>
 <generation id="1" >
 <fitness>
-<max>1</max>
+<max>166</max>
 <min>1</min>
-<avg>1</avg>
+<avg>2</avg>
 </fitness>
 <complexity>
 <champ>104</champ>
@@ -19,11 +19,11 @@
 <avg>104.0</avg>
 </complexity>
 <specie id="104" count="200">
-<chromosome id="104" fitness="1" />
-<chromosome id="105" fitness="1" />
-<chromosome id="106" fitness="1" />
-<chromosome id="107" fitness="1" />
-<chromosome id="108" fitness="1" />
+<chromosome id="104" fitness="166" />
+<chromosome id="105" fitness="104" />
+<chromosome id="106" fitness="62" />
+<chromosome id="107" fitness="24" />
+<chromosome id="108" fitness="8" />
 <chromosome id="109" fitness="1" />
 <chromosome id="110" fitness="1" />
 <chromosome id="111" fitness="1" />
