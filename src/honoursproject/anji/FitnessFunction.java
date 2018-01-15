@@ -42,18 +42,24 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 	private final static Logger logger = Logger.getLogger(DoublePoleBalanceFitnessFunction.class);
 
 	private ActivatorTranscriber factory;
+	// TODO possibly remove rand?
 	private Random rand;
 
 	/**
+	 * Initializes properties from the passed in props.
+	 * 
 	 * @throws java.lang.Exception
 	 * @see com.anji.util.Configurable#init(com.anji.util.Properties)
 	 */
 	@Override
 	public void init(Properties props) throws Exception {
 		try {
+			// Loads the factory defined in the properties file
 			factory = (ActivatorTranscriber) props.singletonObjectProperty(ActivatorTranscriber.class);
+			// Loads the max timesteps and number of trials from the properties file
 			maxTimesteps = props.getIntProperty(TIMESTEPS_KEY, DEFAULT_TIMESTEPS);
 			numTrials = props.getIntProperty(NUM_TRIALS_KEY, DEFAULT_NUM_TRIALS);
+			// TODO Possibly remove?
 			Randomizer randomizer = (Randomizer) props.singletonObjectProperty(Randomizer.class);
 			rand = randomizer.getRand();
 		} catch (Exception e) {
@@ -63,7 +69,10 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 	}
 
 	/**
+	 * Evaluates a group of Chromosomes
+	 * 
 	 * @param genotypes
+	 *            - group of chromosomes to be evaluated
 	 * @see org.jgap.BulkFitnessFunction#evaluate(java.util.List)
 	 * @see IdentifyImageFitnessFunction#evaluate(Chromosome)
 	 */
@@ -77,20 +86,6 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 		}
 	}
 
-	public void test2() throws Exception {
-		GameController.clearActiveElements();
-		// Load the training area from FXML file
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/TrainingArea.fxml"));
-		AnchorPane trainingArea = (AnchorPane) loader.load();
-		Main.setGameScreenController((GameScreenController) loader.getController());
-		// Displays the game screen into the center of game root layout
-		Main.getGameRootLayoutController().setGameScreen(trainingArea);
-		// Initializes the game elements from the passed in pane
-		GameScreenLoader.initGameElements(trainingArea);
-		GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
-	}
-
 	/**
 	 * Evaluate chromosome and set fitness.
 	 *
@@ -99,34 +94,22 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 	public void evaluate(Chromosome c) {
 		try {
 			Activator activator = factory.newActivator(c);
-
-			// calculate fitness, sum of multiple trials
 			int fitness = 0;
+			// Run multiple trials to calculate fitness
 			for (int i = 0; i < numTrials; i++) {
+				// Clear the currently stored active elements
 				GameController.getActiveElements().clear();
+				// Load in new active elements from the saved reset state
 				for (int j = 0; j < GameController.resetState.size(); j++) {
 					Element newObject = GameController.resetState.get(j).clone();
 					GameController.getActiveElements().add(newObject);
-					if(newObject instanceof Player) {
-						GameController.setCurrentPlayer((Player)newObject);
+					// Set the current player
+					if (newObject instanceof Player) {
+						GameController.setCurrentPlayer((Player) newObject);
 					}
-					//GameController.getActiveElements().add(GameController.resetState.get(j).clone());
 				}
-				//System.out.println(GameController.getCurrentPlayer().getXPosition());
-				
-				//System.out.println(GameController.getActiveElements() + " : AAAA : " + GameController.resetState);
-				// Loops through trials
+				// Adds up fitness over multiple trials
 				fitness += singleTrial(activator);
-				//System.out.println(GameController.getActiveElements() + " : BBBB : " + GameController.resetState);
-				// GameController.endGame();
-				// test2();
-				// System.out.println("TEST + " +
-				// GameController.getCurrentPlayer().getHealth());
-				// if (showGame) {
-				// break;
-				// }
-
-				// TODO Reset game
 			}
 			c.setFitnessValue(fitness);
 		} catch (Throwable e) {
@@ -135,6 +118,13 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 		}
 	}
 
+	/**
+	 * Handles performing a single trial
+	 * 
+	 * @param activator
+	 *            -
+	 * @return achieved fitness from this trial
+	 */
 	private int singleTrial(Activator activator) {
 		// TODO Change History to list?
 		HashSet<String> history = new HashSet<>();
@@ -158,36 +148,30 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			}
 			switch (maxI) {
 			case 0:
-				// System.out.println("CASE LEFT");
-
-				//System.out.println("BEFORE " + GameController.getCurrentPlayer().getXPosition());
+				// Moves the player left
 				GameController.getCurrentPlayer().moveLeft();
 				break;
 			case 1:
-				// System.out.println("CASE RIGHT");
+				// Moves the player right
 				GameController.getCurrentPlayer().moveRight();
 				break;
 			case 2:
-				// System.out.println("CASE UP");
+				// Moves the player up
 				GameController.getCurrentPlayer().moveUp();
 				break;
 			case 3:
-				// System.out.println("CASE DOWN");
+				// Moves the player down
 				GameController.getCurrentPlayer().moveDown();
 				break;
 			case 4:
-				// System.out.println("CASE DON'T MOVE");
+				// No movement is performed
 				break;
 			default:
 				throw new RuntimeException("This shouldn't happen");
 			}
-			// if (GameController.getCurrentPlayer().getXPosition() > 0) {
-			// System.out.println(GameController.getCurrentPlayer().getXPosition() + " "
-			// + GameController.getCurrentPlayer().getYPosition());
-			// }
+			//TODO Comment
 			GameController.test();
 
-			//System.out.println("AFTER " + GameController.getCurrentPlayer().getXPosition());
 			fitness = GameController.getCurrentPlayer().getHealth() + currentTimestep;
 			String pos = GameController.getCurrentPlayer().getXPosition() + ":"
 					+ GameController.getCurrentPlayer().getYPosition();
