@@ -54,7 +54,7 @@ public class Evolver implements Configurable {
 	private int maxFitness = 0;
 
 	private Persistence db = null;
-	
+
 	public static BufferedWriter writer;
 
 	public Evolver() {
@@ -76,10 +76,14 @@ public class Evolver implements Configurable {
 		Evolver evolver = new Evolver();
 		evolver.init(props);
 		evolver.run();
-		// Main.showTrainingArea();
 	}
 
-	public static void main2() throws Exception {
+	/**
+	 * Sets up and starts the evolver
+	 * 
+	 * @throws Exception
+	 */
+	public static void setup() throws Exception {
 		// TODO Try catch instead of throws
 		writer = new BufferedWriter(new FileWriter("Fitness"));
 		System.out.println(Copyright.STRING);
@@ -87,47 +91,51 @@ public class Evolver implements Configurable {
 		Properties props = new Properties("honoursproject/anji/properties.txt");
 		Evolver evolver = new Evolver();
 		evolver.init(props);
+		// Runs evolver
 		evolver.run();
-		// Main.showTrainingArea();
 		writer.close();
 	}
 
+	/**
+	 * Runs the evolver
+	 */
 	private void run() {
-		// run start time
+		// Stores the start time of the run
 		Date runStartDate = Calendar.getInstance().getTime();
 		logger.info("Run: start");
 		DateFormat fmt = new SimpleDateFormat("HH:mm:ss");
-		// initialize result data
+		// Initializes the results
 		int generationOfFirstSolution = -1;
 		champ = genotype.getFittestChromosome();
 		double adjustedFitness = (maxFitness > 0 ? champ.getFitnessValue() / maxFitness : champ.getFitnessValue());
-		// generations
+		// Evolves for the set number of generations
 		for (int generation = 0; (generation < numEvolutions && adjustedFitness < targetFitness); ++generation) {
+			// Stores the start time of the generation
 			Date generationStartDate = Calendar.getInstance().getTime();
 			logger.info("Generation " + generation + ": start");
 
-			// next generation
+			// Evolves the current generation of chromosomes
 			genotype.evolve();
-			// result data
+			// Gets the results from the evolution
 			champ = genotype.getFittestChromosome();
 			adjustedFitness = (maxFitness > 0 ? (double) champ.getFitnessValue() / maxFitness
 					: champ.getFitnessValue());
 			if (adjustedFitness >= thresholdFitness && generationOfFirstSolution == -1) {
 				generationOfFirstSolution = generation;
 			}
+			// Writes the fittest champion value to a file
 			try {
 				writer.write(champ.getFitnessValue() + "\n");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// generation finish
+			// Logs the time taken for this generation
 			Date generationEndDate = Calendar.getInstance().getTime();
 			long durationMillis = generationEndDate.getTime() - generationStartDate.getTime();
 			logger.info("Generation " + generation + ": end [" + fmt.format(generationStartDate) + " - "
 					+ fmt.format(generationEndDate) + "] [" + durationMillis + "]");
 		}
-		// run finish
+		// Sends an event that the current evolution is finished
 		config.getEventManager().fireGeneticEvent(new GeneticEvent(GeneticEvent.RUN_COMPLETED_EVENT, genotype));
 		logConclusion(generationOfFirstSolution, champ);
 		Date runEndDate = Calendar.getInstance().getTime();
@@ -141,7 +149,9 @@ public class Evolver implements Configurable {
 	 * occurred, and the champion of the final generation.
 	 *
 	 * @param generationOfFirstSolution
+	 *            - Generation of the first solution
 	 * @param champ
+	 *            - Champion chromosome
 	 */
 	private static void logConclusion(int generationOfFirstSolution, Chromosome champ) {
 		logger.info("generation of first solution == " + generationOfFirstSolution);
@@ -150,17 +160,19 @@ public class Evolver implements Configurable {
 				+ NeatChromosomeUtility.getNeuronList(champ.getAlleles(), NeuronType.HIDDEN).size());
 	}
 
-	// WORKS WITH NO ERROR
 	@Override
 	public void init(Properties props) throws Exception {
+		// Checks if the saved runs are to be reset
 		boolean doReset = props.getBooleanProperty(RESET_KEY, false);
+		// Resets the previous run
 		if (doReset) {
 			logger.warn("Resetting previous run!");
 			Reset resetter = new Reset(props);
 			resetter.setUserInteraction(false);
 			resetter.reset();
 		}
-		config = new NeatConfiguration(props);// peristence
+		// Loads parameters from properties
+		config = new NeatConfiguration(props);
 		db = (Persistence) props.singletonObjectProperty(Persistence.PERSISTENCE_CLASS_KEY);
 
 		numEvolutions = props.getIntProperty(NUM_GENERATIONS_KEY);
@@ -170,7 +182,6 @@ public class Evolver implements Configurable {
 		db.startRun(run.getName());
 		config.getEventManager().addEventListener(GeneticEvent.GENOTYPE_EVALUATED_EVENT, run);
 
-		// logging
 		LogEventListener logListener = new LogEventListener(config);
 		config.getEventManager().addEventListener(GeneticEvent.GENOTYPE_EVOLVED_EVENT, logListener);
 		config.getEventManager().addEventListener(GeneticEvent.GENOTYPE_EVOLVED_EVENT, logListener);
@@ -186,13 +197,12 @@ public class Evolver implements Configurable {
 		config.getEventManager().addEventListener(GeneticEvent.GENOTYPE_EVALUATED_EVENT, presListener);
 		config.getEventManager().addEventListener(GeneticEvent.RUN_COMPLETED_EVENT, presListener);
 
-		// fitness function
 		BulkFitnessFunction fitnessFunc = (BulkFitnessFunction) props
 				.singletonObjectProperty(FITNESS_FUNCTION_CLASS_KEY);
 		config.setBulkFitnessFunction(fitnessFunc);
 		maxFitness = fitnessFunc.getMaxFitnessValue();
 
-		// load population, either from previous run or random
+		// Population is loaded
 		genotype = db.loadGenotype(config);
 		if (genotype != null) {
 			logger.info("genotype from previous run");
@@ -203,6 +213,8 @@ public class Evolver implements Configurable {
 	}
 
 	/**
+	 * Gets the champion of the previous generation
+	 * 
 	 * @return champion of last generation
 	 */
 	public Chromosome getChamp() {
@@ -220,6 +232,8 @@ public class Evolver implements Configurable {
 	}
 
 	/**
+	 * Gets the target fitness
+	 * 
 	 * @return target fitness value, 0 ... 1
 	 */
 	public double getTargetFitness() {
@@ -227,6 +241,8 @@ public class Evolver implements Configurable {
 	}
 
 	/**
+	 * Gets the threshold fitness
+	 * 
 	 * @return threshold fitness value, 0 ... 1
 	 */
 	public double getThresholdFitness() {
