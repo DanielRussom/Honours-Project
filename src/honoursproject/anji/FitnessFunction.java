@@ -1,6 +1,5 @@
 package honoursproject.anji;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -20,15 +19,10 @@ import com.anji.util.Properties;
 import com.anji.util.Randomizer;
 
 import honoursproject.GameController;
-import honoursproject.Main;
 import honoursproject.model.Element;
 import honoursproject.model.Enemy;
 import honoursproject.model.Player;
 import honoursproject.model.Projectile;
-import honoursproject.util.GameScreenLoader;
-import honoursproject.view.GameScreenController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
 
 public class FitnessFunction implements BulkFitnessFunction, Configurable {
 	private final static String TIMESTEPS_KEY = "honours.timesteps";
@@ -78,7 +72,6 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 	 */
 	@Override
 	public void evaluate(List genotypes) {
-		// TODO Auto-generated method stub
 		Iterator it = genotypes.iterator();
 		while (it.hasNext()) {
 			Chromosome c = (Chromosome) it.next();
@@ -111,7 +104,8 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 				// Adds up fitness over multiple trials
 				fitness += singleTrial(activator);
 			}
-			c.setFitnessValue(fitness);
+			// Stores the average fitness of the chromosome
+			c.setFitnessValue(fitness/numTrials);
 		} catch (Throwable e) {
 			logger.warn("error evaluating chromosome " + c.toString(), e);
 			c.setFitnessValue(0);
@@ -169,19 +163,23 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			default:
 				throw new RuntimeException("This shouldn't happen");
 			}
-			//TODO Comment
-			GameController.test();
+			// Updates the game
+			GameController.manualGameUpdate();
 
+			// TODO Test fitness +=
+			// Calculates the current fitness
 			fitness = GameController.getCurrentPlayer().getHealth() + currentTimestep;
+			// Stores the player's current position
 			String pos = GameController.getCurrentPlayer().getXPosition() + ":"
 					+ GameController.getCurrentPlayer().getYPosition();
+			// Tracks if the player has been stuck in the same location
 			if (history.contains(pos)) {
 				stuckCounter--;
 			} else {
 				stuckCounter = 100;
 				history.add(pos);
 			}
-
+			// Ends the test if the player dies or is stuck
 			if (stuckCounter <= 0 || GameController.getCurrentPlayer().getHealth() <= 0) {
 				break;
 			}
@@ -190,21 +188,28 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 		return fitness;
 	}
 
+	/**
+	 * Handles getting inputs from the game
+	 * 
+	 * @return game inputs
+	 */
 	private double[] getNetworkInput() {
-		// TODO Change PH value
+		// TODO Change PH value?
 		double[] input = new double[100];
-		// System.out.println(GameController.getActiveElements());
+		// Stores player variables
 		Player player = GameController.getCurrentPlayer();
 		input[0] = player.getXPosition();
 		input[1] = player.getYPosition();
 		input[2] = player.getHealth();
 		ArrayList<Element> enemies = new ArrayList<Element>();
 		ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
-
+		// Iterates through active game elements
 		for (Element current : GameController.getActiveElements()) {
+			// Stores a copy of enemies
 			if (current instanceof Enemy) {
 				enemies.add(current);
 			}
+			// Stores a copy of enemy projectiles
 			if (current instanceof Projectile) {
 				Projectile currentProjectile = (Projectile) current;
 				if (currentProjectile.getShooter() instanceof Enemy) {
@@ -212,12 +217,15 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 				}
 			}
 		}
+		//TODO Tidy
+		// Stories enemy variables for each enemy
 		int sizePerEnemy = 3;
 		for (int i = 0; i < enemies.size(); i++) {
 			input[(i + 1) * sizePerEnemy] = enemies.get(i).getXPosition();
 			input[((i + 1) * sizePerEnemy) + 1] = enemies.get(i).getYPosition();
 			input[((i + 1) * sizePerEnemy) + 2] = ((Enemy) enemies.get(i)).getHealth();
 		}
+		// Stores projectile variables for each projectile
 		int sizePerProjectile = 4;
 		int offset = (enemies.size() * 3) + 3;
 		for (int i = 0; i < projectiles.size(); i++) {
@@ -227,12 +235,9 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			input[offset + (i * sizePerProjectile) + 3] = projectiles.get(i).getYVel();
 
 		}
-		// TODO TIDY
-		// System.out.println("TEST " + input);
 		return input;
 	}
 
-	// TODO
 	@Override
 	public int getMaxFitnessValue() {
 		return numTrials * maxTimesteps;

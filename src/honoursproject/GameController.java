@@ -17,14 +17,15 @@ public class GameController {
 		clearActiveElements();
 	}
 
-	public static void test() {
+	// Manually updates the game by 1 frame
+	public static void manualGameUpdate() {
 		// Creates a local copy of current active elements
-		ArrayList<Element> activeElementss = new ArrayList<Element>();
+		ArrayList<Element> localActiveElements = new ArrayList<Element>();
 		for (Element current : GameController.getActiveElements()) {
-			activeElementss.add(current);
+			localActiveElements.add(current);
 		}
 		// Iterates through each active element
-		for (Element current : activeElementss) {
+		for (Element current : localActiveElements) {
 			// Skips the current element if it is flagged to be removed
 			if (GameController.getElementsToRemove().contains(current)) {
 				System.out.println("SKIPPED " + current.toString());
