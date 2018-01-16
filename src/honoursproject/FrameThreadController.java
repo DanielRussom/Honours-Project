@@ -29,9 +29,10 @@ public class FrameThreadController extends AnimationTimer {
 			setupTime -= 1;
 			return;
 		}
+		CollisionDetector.initContainerValues(GameController.getActiveElements().get(0));
 		if(triggerEvolver) {
 			try {
-				CollisionDetector.initContainerValues(GameController.getActiveElements().get(0));
+				
 				
 				for(int i = 0; i < GameController.getActiveElements().size(); i++) {
 					GameController.resetState.add(GameController.getActiveElements().get(i).clone());

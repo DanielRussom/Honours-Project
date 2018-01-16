@@ -4,6 +4,7 @@ import java.util.Random;
 
 import honoursproject.model.Movable;
 import honoursproject.model.Player;
+import honoursproject.util.CollisionDetector;
 
 public class MovementDiag implements Movable {
 	double maxOffset = 5;
@@ -18,11 +19,7 @@ public class MovementDiag implements Movable {
 				player.setYVel(player.getYVel() * -1);
 			}
 		} else if (player.getYVel() > 0) {
-
-			// if (player.getBottomSide() >
-			// player.getImage().getParent().getLayoutBounds().getHeight() - 30) {
-			//TODO Workaround
-			if (player.getBottomSide() > 375 - 30) {
+			if (player.getBottomSide() > CollisionDetector.getContainerHeight() - 30) {
 				player.setYVel(player.getYVel() * -1);
 			}
 
@@ -32,9 +29,7 @@ public class MovementDiag implements Movable {
 				player.setXVel(player.getXVel() * -1);
 			}
 		} else if (player.getXVel() > 0) {
-			// if (player.getRightSide() >
-			// player.getImage().getParent().getLayoutBounds().getWidth() - 30) {
-			if (player.getRightSide() > 575 - 30) {
+			if (player.getRightSide() > CollisionDetector.getContainerWidth() - 30) {
 				player.setXVel(player.getXVel() * -1);
 			}
 		}
@@ -54,10 +49,8 @@ public class MovementDiag implements Movable {
 					player.addSingleTurnXVel(maxOffset);
 					break;
 				case 2: // -Y
-
 					currentYOffset += (maxOffset * -1);
 					player.singleTurnYVel += (maxOffset * -1);
-
 					break;
 				case 3: // +Y
 					player.singleTurnYVel = maxOffset;

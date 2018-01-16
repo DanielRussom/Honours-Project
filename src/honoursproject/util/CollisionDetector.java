@@ -7,14 +7,18 @@ import honoursproject.model.Projectile;
 import javafx.scene.shape.Rectangle;
 
 public class CollisionDetector {
-	// TODO
 	static double containerWidth = 0;
 	static double containerHeight = 0;
 
+	/**
+	 * Stores the size of the game map
+	 * 
+	 * @param element
+	 *            - element within game map
+	 */
 	public static void initContainerValues(Element element) {
 		containerWidth = element.getImage().getParent().getLayoutBounds().getWidth();
 		containerHeight = element.getImage().getParent().getLayoutBounds().getHeight();
-		System.out.println(containerWidth + "," + containerHeight + " AAAAAA");
 	}
 
 	/**
@@ -24,8 +28,6 @@ public class CollisionDetector {
 	 *            - element being checked
 	 */
 	public static void handleBoundaryCollision(Element element) {
-		//double containerWidth = element.getImage().getParent().getLayoutBounds().getWidth();
-		//double containerHeight = element.getImage().getParent().getLayoutBounds().getHeight();
 		if (element.getXPosition() < 0) {
 			element.setXPosition(0);
 		} else if (element.getRightSide() > containerWidth) {
@@ -45,8 +47,6 @@ public class CollisionDetector {
 	 *            - projectile being checked
 	 */
 	public static void handleBoundaryCollision(Projectile projectile) {
-		//double containerWidth = projectile.getImage().getParent().getLayoutBounds().getWidth();
-		//double containerHeight = projectile.getImage().getParent().getLayoutBounds().getHeight();
 		Rectangle projectileImage = (Rectangle) projectile.getImage();
 		if (projectile.getXPosition() < 0) {
 			projectileImage.setWidth(projectileImage.getWidth() + projectile.getXPosition());
@@ -78,5 +78,23 @@ public class CollisionDetector {
 				GameController.getElementsToRemove().add(projectile);
 			}
 		}
+	}
+
+	/**
+	 * Gets the width of the current game map
+	 * 
+	 * @return the containerWidth
+	 */
+	public static double getContainerWidth() {
+		return containerWidth;
+	}
+
+	/**
+	 * Gets the height of the current game map
+	 * 
+	 * @return the containerHeight
+	 */
+	public static double getContainerHeight() {
+		return containerHeight;
 	}
 }

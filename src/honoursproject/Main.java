@@ -34,11 +34,6 @@ public class Main extends Application {
 
 	public static void main(String[] args) throws Exception {
 		launch(args);
-
-		// Properties props = new Properties("honoursproject/anji/properties.txt");
-		// Evolver evolver = new Evolver();
-		// evolver.init(props);
-		// evolver.run();
 	}
 
 	/**
@@ -143,7 +138,7 @@ public class Main extends Application {
 			gameRootLayoutController.setGameScreen(gameScreen);
 			// Initializes the game elements from the passed in pane
 			GameScreenLoader.initGameElements(gameScreen);
-			GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
+			//GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
 			// Begins the FrameThreadController
 			setFrameThreadController(new FrameThreadController());
 			getFrameThreadController().start();
@@ -166,8 +161,8 @@ public class Main extends Application {
 			gameRootLayoutController.setGameScreen(gameScreen);
 			// Initializes the game elements from the passed in pane
 			GameScreenLoader.initGameElements(gameScreen);
-			GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
-			GameController.setCurrentPlayer2(GameScreenLoader.getPlayer2());
+			//GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
+			//GameController.setCurrentPlayer2(GameScreenLoader.getPlayer2());
 			// Begins the FrameThreadController
 			setFrameThreadController(new FrameThreadController());
 			getFrameThreadController().start();
@@ -193,7 +188,7 @@ public class Main extends Application {
 			gameRootLayoutController.setGameScreen(trainingArea);
 			// Initializes the game elements from the passed in pane
 			GameScreenLoader.initGameElements(trainingArea);
-			GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
+			//GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
 			// Begins the FrameThreadController
 			setFrameThreadController(new FrameThreadController());
 			getFrameThreadController().start();

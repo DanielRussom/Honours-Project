@@ -69,7 +69,6 @@ public class Evolver implements Configurable {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		// TODO Try catch instead of throws
 		System.out.println(Copyright.STRING);
 		// Loads in properties file
 		Properties props = new Properties("honoursproject/anji/properties.txt");
@@ -84,7 +83,6 @@ public class Evolver implements Configurable {
 	 * @throws Exception
 	 */
 	public static void setup() throws Exception {
-		// TODO Try catch instead of throws
 		writer = new BufferedWriter(new FileWriter("Fitness"));
 		System.out.println(Copyright.STRING);
 		// Loads in properties file

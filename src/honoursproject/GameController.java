@@ -12,12 +12,17 @@ public class GameController {
 	private static Player currentPlayer2;
 	public static ArrayList<Element> resetState = new ArrayList<Element>();
 
+	/**
+	 * Ends the current game
+	 */
 	public static void endGame() {
 		Main.getFrameThreadController().stop();
 		clearActiveElements();
 	}
 
-	// Manually updates the game by 1 frame
+	/**
+	 * Manually updates the game by 1 frame
+	 */
 	public static void manualGameUpdate() {
 		// Creates a local copy of current active elements
 		ArrayList<Element> localActiveElements = new ArrayList<Element>();
