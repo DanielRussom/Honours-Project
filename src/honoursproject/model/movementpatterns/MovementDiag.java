@@ -7,10 +7,10 @@ import honoursproject.model.Player;
 import honoursproject.util.CollisionDetector;
 
 public class MovementDiag implements Movable {
-	double maxOffset = 5;
-	double currentXOffset = 0;
-	double currentYOffset = 0;
-	Random rand = new Random();
+	private double maxOffset = 5;
+	private double currentXOffset = 0;
+	private double currentYOffset = 0;
+	private Random rand = new Random();
 
 	@Override
 	public void move(Player player) {

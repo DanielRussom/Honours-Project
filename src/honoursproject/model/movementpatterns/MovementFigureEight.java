@@ -1,12 +1,17 @@
 package honoursproject.model.movementpatterns;
 
+import java.util.Random;
+
 import honoursproject.model.Movable;
 import honoursproject.model.Player;
 
 public class MovementFigureEight implements Movable {
-
-	boolean isMovingUp = true;
-	boolean isInTop = true;
+	private boolean isMovingUp = true;
+	private boolean isInTop = true;
+	private double maxOffset = 5;
+	private double currentXOffset = 0;
+	private double currentYOffset = 0;
+	private Random rand = new Random();
 
 	@Override
 	public void move(Player player) {
@@ -62,8 +67,8 @@ public class MovementFigureEight implements Movable {
 		player.setXVel(0);
 		player.setYVel(-2);
 	}
-	
-public void moveSetUp(Player player, double maxNoise) {
-		
+
+	public void moveSetUp(Player player, double maxNoise) {
+
 	}
 }
