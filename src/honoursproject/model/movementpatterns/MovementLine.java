@@ -35,16 +35,11 @@ public class MovementLine implements Movable {
 				case 2: // -Y
 
 					currentYOffset += (maxOffset * -1);
-//					if(currentYOffset < maxOffset * -1) {
-//						double test = currentYOffset - (maxOffset * -1);
-//						currentYOffset = maxOffset *-1;
-//						
-//					}
-					player.singleTurnYVel += (maxOffset *-1);
-					
+					player.addSingleTurnYVel((int) (maxOffset * -1));
+
 					break;
 				case 3: // +Y
-					player.singleTurnYVel = maxOffset;
+					player.addSingleTurnYVel((int) maxOffset);
 					currentXOffset += maxOffset;
 					break;
 				}

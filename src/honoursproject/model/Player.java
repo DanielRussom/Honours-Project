@@ -15,7 +15,7 @@ public class Player extends Element{
 	protected double xKnockBack = 0;
 	protected double yKnockBack = 0;
 	protected double singleTurnXVel = 0;
-	public double singleTurnYVel = 0;
+	protected double singleTurnYVel = 0;
 	protected Movable moveBehaviour;
 
 	public Player(Image image) {
@@ -256,5 +256,9 @@ public class Player extends Element{
 	public void addSingleTurnXVel(double xVelIncrease) {
 		singleTurnXVel += xVelIncrease;
 		
+	}
+
+	public void addSingleTurnYVel(int yVelIncrease) {
+		singleTurnYVel += yVelIncrease;		
 	}
 }
