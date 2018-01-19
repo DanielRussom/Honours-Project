@@ -13,5 +13,10 @@
          </image>
       </ImageView>
       <Label id="notPlayer" layoutX="123.0" layoutY="145.0" text="Label" />
+      <ImageView id="wall" fitHeight="50.0" fitWidth="50.0" layoutX="210.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Wall.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

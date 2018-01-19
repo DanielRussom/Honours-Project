@@ -65,7 +65,12 @@ public class GameScreenLoader {
 			}
 			if(current.getId().equals("wall")) {
 				Wall wall = new Wall();
-				
+				wall.setXPosition(current.getLayoutX());
+				wall.setYPosition(current.getLayoutY());
+				wall.moveTo(new Point((int) wall.getXPosition(), (int) wall.getYPosition()));
+				nodesToAdd.add(wall.getImage());
+				current.setVisible(false);
+				GameController.addActiveElement(wall);
 			}
 		}
 		Main.getGameScreenController().addNode(nodesToAdd);
