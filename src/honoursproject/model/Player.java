@@ -207,7 +207,6 @@ public class Player extends Element{
 	 */
 	@Override
 	public void handleBeingHit(Element hitter) {
-		//System.out.println(toString() + " was hit by " + hitter.toString());
 		if (hitter instanceof Projectile) {
 			Projectile hittingProjectile = (Projectile) hitter;
 			health -= hittingProjectile.damage;

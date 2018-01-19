@@ -1,16 +1,30 @@
 package honoursproject.model;
 
+import honoursproject.Main;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Wall extends Element {
+	protected Node image;
+	protected double xPosition = 0;
+	protected double yPosition = 0;
 
 	public Wall() {
-		// TODO Auto-generated constructor stub
+		ImageView tempImage = new ImageView(new Image(Main.class.getResourceAsStream("Wall.png")));
+		tempImage.setFitHeight(50);
+		tempImage.setFitWidth(50);
+		this.image = tempImage;
 	}
 
-	public Wall(Node image) {
-		super(image);
-		// TODO Auto-generated constructor stub
+	public Wall(Image image) {
+		ImageView tempImage = new ImageView(image);
+		tempImage.setFitHeight(50);
+		tempImage.setFitWidth(50);
+		this.image = tempImage;
 	}
 
+	public void handleBeingHit(Element hitter) {
+		System.out.println(this.toString() + " was hit by " + hitter.toString());
+	}
 }

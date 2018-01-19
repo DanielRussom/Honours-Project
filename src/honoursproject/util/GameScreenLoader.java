@@ -7,6 +7,7 @@ import honoursproject.GameController;
 import honoursproject.Main;
 import honoursproject.model.Enemy;
 import honoursproject.model.Player;
+import honoursproject.model.Wall;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -62,25 +63,11 @@ public class GameScreenLoader {
 				current.setVisible(!current.isVisible());
 				GameController.addActiveElement(enemy);
 			}
+			if(current.getId().equals("wall")) {
+				Wall wall = new Wall();
+				
+			}
 		}
 		Main.getGameScreenController().addNode(nodesToAdd);
 	}
-//INCASE
-	/**
-	 * Returns the current player
-	 * 
-	 * @return the player
-	 */
-	// public static Player getPlayer() {
-	// return player;
-	// }
-
-	/**
-	 * Returns the current second player
-	 * 
-	 * @return the player
-	 */
-	// public static Player getPlayer2() {
-	// return player2;
-	// }
 }

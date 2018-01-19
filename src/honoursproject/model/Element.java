@@ -28,7 +28,6 @@ public class Element implements Cloneable {
 	//INCASE
 	@Override
 	public Element clone() throws CloneNotSupportedException {
-
 	    return (Element) super.clone();
 	}
 	
