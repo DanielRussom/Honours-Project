@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 
 public class Wall extends Element {
 
+	//TODO Create StationaryElement class?
 	public Wall() {
 		ImageView tempImage = new ImageView(new Image(Main.class.getResourceAsStream("Wall.png")));
 		tempImage.setFitHeight(50);
@@ -20,7 +21,9 @@ public class Wall extends Element {
 		this.image = tempImage;
 	}
 
+	public void move() {
+	}
+	
 	public void handleBeingHit(Element hitter) {
-		System.out.println(this.toString() + " was hit by " + hitter.toString());
 	}
 }

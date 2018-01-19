@@ -38,6 +38,7 @@ public class GameScreenLoader {
 				player.moveTo(new Point((int) player.getXPosition(), (int) player.getYPosition()));
 				nodesToAdd.add(player.getImage());
 				current.setVisible(!current.isVisible());
+				Main.getGameRootLayoutController().setLblPlayerHealthValue(player.getHealth());
 				GameController.setCurrentPlayer(player);
 				continue;
 			}
