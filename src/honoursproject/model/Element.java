@@ -5,7 +5,7 @@ import java.awt.Point;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 
-public class Element implements Cloneable {
+public abstract class Element implements Cloneable {
 	protected double xPosition = 0;
 	protected double yPosition = 0;
 	protected Node image;
@@ -26,6 +26,11 @@ public class Element implements Cloneable {
 		setXPosition(image.getLayoutX() + image.getTranslateX());
 		setYPosition(image.getLayoutY() + image.getTranslateY());
 	}
+	
+	/**
+	 * 
+	 */
+	public abstract void move();
 
 	/**
 	 * Moves this element to the specified location point.

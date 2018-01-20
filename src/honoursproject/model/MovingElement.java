@@ -8,7 +8,7 @@ import honoursproject.Main;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 
-public class MovingElement extends Element {
+public abstract class MovingElement extends Element {
 	protected double xVel = 0;
 	protected double xVelDecimal = 0;
 	protected double yVel = 0;
@@ -24,34 +24,6 @@ public class MovingElement extends Element {
 
 	public MovingElement(Node image) {
 		super(image);
-	}
-
-	/**
-	 * Moves this element to the specified location.
-	 * 
-	 * @param newLocation
-	 *            - the new location for this element
-	 */
-	public void moveTo(Point newLocation) {
-		image.setTranslateX(0);
-		image.setTranslateY(0);
-		image.setLayoutX(newLocation.getX());
-		image.setLayoutY(newLocation.getY());
-	}
-
-	/**
-	 * Moves this element to the specified location.
-	 * 
-	 * @param newX
-	 *            - the new X coordinate for this element
-	 * @param newY
-	 *            - the new Y coordinate for this element
-	 */
-	public void moveTo(double newX, double newY) {
-		image.setTranslateX(0);
-		image.setTranslateY(0);
-		image.setLayoutX(newX);
-		image.setLayoutY(newY);
 	}
 
 	/**
@@ -217,11 +189,7 @@ public class MovingElement extends Element {
 		System.out.println("Default hit! - This should be overridden!");
 		System.out.println(this.toString() + " was hit by " + hitter.toString());
 	}
-
-	public void move() {
-		System.out.println("Move PH");
-	}
-
+	
 	/**
 	 * @return the xVel
 	 */

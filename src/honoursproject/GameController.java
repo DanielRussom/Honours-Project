@@ -2,15 +2,16 @@ package honoursproject;
 
 import java.util.ArrayList;
 
+import honoursproject.model.Element;
 import honoursproject.model.MovingElement;
 import honoursproject.model.Player;
 
 public class GameController {
-	private static ArrayList<MovingElement> activeElements = new ArrayList<MovingElement>();
-	private static ArrayList<MovingElement> elementsToRemove = new ArrayList<MovingElement>();
+	private static ArrayList<Element> activeElements = new ArrayList<Element>();
+	private static ArrayList<Element> elementsToRemove = new ArrayList<Element>();
 	private static Player currentPlayer;
 	private static Player currentPlayer2;
-	public static ArrayList<MovingElement> resetState = new ArrayList<MovingElement>();
+	public static ArrayList<Element> resetState = new ArrayList<Element>();
 
 	/**
 	 * Ends the current game
@@ -25,12 +26,12 @@ public class GameController {
 	 */
 	public static void manualGameUpdate() {
 		// Creates a local copy of current active elements
-		ArrayList<MovingElement> localActiveElements = new ArrayList<MovingElement>();
-		for (MovingElement current : GameController.getActiveElements()) {
+		ArrayList<Element> localActiveElements = new ArrayList<Element>();
+		for (Element current : GameController.getActiveElements()) {
 			localActiveElements.add(current);
 		}
 		// Iterates through each active element
-		for (MovingElement current : localActiveElements) {
+		for (Element current : localActiveElements) {
 			// Skips the current element if it is flagged to be removed
 			if (GameController.getElementsToRemove().contains(current)) {
 				System.out.println("SKIPPED " + current.toString());
@@ -51,7 +52,7 @@ public class GameController {
 	 * 
 	 * @return the activeElements
 	 */
-	public static ArrayList<MovingElement> getActiveElements() {
+	public static ArrayList<Element> getActiveElements() {
 		return activeElements;
 	}
 
