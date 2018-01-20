@@ -2,6 +2,7 @@ package honoursproject.util;
 
 import honoursproject.GameController;
 import honoursproject.Main;
+import honoursproject.model.Element;
 import honoursproject.model.MovingElement;
 import honoursproject.model.Projectile;
 import javafx.scene.shape.Rectangle;
@@ -16,7 +17,7 @@ public class CollisionDetector {
 	 * @param element
 	 *            - element within game map
 	 */
-	public static void initContainerValues(MovingElement element) {
+	public static void initContainerValues(Element element) {
 		containerWidth = element.getImage().getParent().getLayoutBounds().getWidth();
 		containerHeight = element.getImage().getParent().getLayoutBounds().getHeight();
 	}
@@ -27,7 +28,7 @@ public class CollisionDetector {
 	 * @param element
 	 *            - element being checked
 	 */
-	public static void handleBoundaryCollision(MovingElement element) {
+	public static void handleBoundaryCollision(Element element) {
 		if (element.getXPosition() < 0) {
 			element.setXPosition(0);
 		} else if (element.getRightSide() > containerWidth) {

@@ -20,6 +20,7 @@ import com.anji.util.Randomizer;
 
 import honoursproject.GameController;
 import honoursproject.model.MovingElement;
+import honoursproject.model.Element;
 import honoursproject.model.Enemy;
 import honoursproject.model.Player;
 import honoursproject.model.Projectile;
@@ -201,10 +202,10 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 		input[0] = player.getXPosition();
 		input[1] = player.getYPosition();
 		input[2] = player.getHealth();
-		ArrayList<MovingElement> enemies = new ArrayList<MovingElement>();
+		ArrayList<Element> enemies = new ArrayList<Element>();
 		ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 		// Iterates through active game elements
-		for (MovingElement current : GameController.getActiveElements()) {
+		for (Element current : GameController.getActiveElements()) {
 			// Stores a copy of enemies
 			if (current instanceof Enemy) {
 				enemies.add(current);

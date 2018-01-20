@@ -150,7 +150,7 @@ public class Player extends MovingElement{
 		// Point test = super.checkCollision(newPosition);
 		CollisionDetector.handleBoundaryCollision(this);
 		Point test = new Point((int) getXPosition(), (int) getYPosition());
-		for (MovingElement current : GameController.getActiveElements()) {
+		for (Element current : GameController.getActiveElements()) {
 			if (current.equals(this)) {
 				continue;
 			}
@@ -161,7 +161,7 @@ public class Player extends MovingElement{
 			} else if (getYPosition() >= current.getBottomSide() || getBottomSide() <= current.getYPosition()) {
 			} else {
 				if (current instanceof Projectile) {
-					handleBeingHit(current);
+					handleBeingHit((MovingElement) current);
 					current.handleBeingHit(this);
 					continue;
 				}
@@ -206,7 +206,7 @@ public class Player extends MovingElement{
 	 * honoursproject.model.Element#handleBeingHit(honoursproject.model.Element)
 	 */
 	@Override
-	public void handleBeingHit(MovingElement hitter) {
+	public void handleBeingHit(Element hitter) {
 		if (hitter instanceof Projectile) {
 			Projectile hittingProjectile = (Projectile) hitter;
 			health -= hittingProjectile.damage;

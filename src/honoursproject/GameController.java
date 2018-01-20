@@ -3,7 +3,6 @@ package honoursproject;
 import java.util.ArrayList;
 
 import honoursproject.model.Element;
-import honoursproject.model.MovingElement;
 import honoursproject.model.Player;
 
 public class GameController {
@@ -34,7 +33,6 @@ public class GameController {
 		for (Element current : localActiveElements) {
 			// Skips the current element if it is flagged to be removed
 			if (GameController.getElementsToRemove().contains(current)) {
-				System.out.println("SKIPPED " + current.toString());
 				continue;
 			}
 			// Performs the current element's move
@@ -42,7 +40,7 @@ public class GameController {
 		}
 		// Removes all elements flagged to be removed from the global element list
 		GameController.getActiveElements().removeAll(GameController.getElementsToRemove());
-		for (MovingElement currentNode : GameController.getElementsToRemove()) {
+		for (Element currentNode : GameController.getElementsToRemove()) {
 			Main.getGameScreenController().removeNode(currentNode.getImage());
 		}
 	}
@@ -62,7 +60,7 @@ public class GameController {
 	 * @param element
 	 *            Element to be added to activeElements
 	 */
-	public static void addActiveElement(MovingElement element) {
+	public static void addActiveElement(Element element) {
 		getActiveElements().add(element);
 	}
 
@@ -78,7 +76,7 @@ public class GameController {
 	 * 
 	 * @return the elementsToRemove
 	 */
-	public static ArrayList<MovingElement> getElementsToRemove() {
+	public static ArrayList<Element> getElementsToRemove() {
 		return elementsToRemove;
 	}
 

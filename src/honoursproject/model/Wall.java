@@ -24,6 +24,6 @@ public class Wall extends Element {
 	public void move() {
 	}
 	
-	public void handleBeingHit(MovingElement hitter) {
+	public void handleBeingHit(Element hitter) {
 	}
 }

@@ -28,6 +28,15 @@ public abstract class Element implements Cloneable {
 	}
 	
 	/**
+	 * Handles receiving a hit
+	 * @param hitter - The element hitting this element
+	 */
+	public void handleBeingHit(Element hitter) {
+		System.out.println("Default hit! - This should be overridden!");
+		System.out.println(this.toString() + " was hit by " + hitter.toString());
+	}
+	
+	/**
 	 * 
 	 */
 	public abstract void move();
@@ -115,5 +124,47 @@ public abstract class Element implements Cloneable {
 	 */
 	public void setYPosition(double yPosition) {
 		this.yPosition = yPosition;
+	}
+	
+	/**
+	 * Returns the x coordinate of element's right side.
+	 * 
+	 * @return element's right side x coordinate
+	 */
+	public double getRightSide() {
+		return getXPosition() + image.getLayoutBounds().getWidth();
+	}
+
+	/**
+	 * Returns the x coordinate of the element's right side, if it were at the
+	 * location passed in.
+	 * 
+	 * @param location
+	 *            - location of element
+	 * @return element's right side x coordinate at specified location
+	 */
+	public double getRightSide(Point location) {
+		return location.getX() + image.getLayoutBounds().getWidth();
+	}
+
+	/**
+	 * Returns the y coordinate of element's bottom side.
+	 * 
+	 * @return element's bottom side y coordinate
+	 */
+	public double getBottomSide() {
+		return getYPosition() + image.getLayoutBounds().getHeight();
+	}
+
+	/**
+	 * Returns the y coordinate of the element's bottom side, if it were at the
+	 * location passed in.
+	 * 
+	 * @param location
+	 *            - location of element
+	 * @return element's bottom side y coordinate at specified location
+	 */
+	public double getBottomSide(Point location) {
+		return location.getY() + image.getLayoutBounds().getHeight();
 	}
 }

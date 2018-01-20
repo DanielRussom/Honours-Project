@@ -2,7 +2,7 @@ package honoursproject;
 
 import java.util.ArrayList;
 
-import honoursproject.model.MovingElement;
+import honoursproject.model.Element;
 import honoursproject.util.CollisionDetector;
 import javafx.animation.AnimationTimer;
 
@@ -45,12 +45,12 @@ public class FrameThreadController extends AnimationTimer {
 			triggerEvolver = false;
 		}
 		// Creates a local copy of current active elements
-		ArrayList<MovingElement> activeElements = new ArrayList<MovingElement>();
-		for (MovingElement current : GameController.getActiveElements()) {
+		ArrayList<Element> activeElements = new ArrayList<Element>();
+		for (Element current : GameController.getActiveElements()) {
 			activeElements.add(current);
 		}
 		// Iterates through each active element
-		for (MovingElement current : activeElements) {
+		for (Element current : activeElements) {
 			// Skips the current element if it is flagged to be removed
 			if (GameController.getElementsToRemove().contains(current)) {
 				System.out.println("SKIPPED " + current.toString());
@@ -61,7 +61,7 @@ public class FrameThreadController extends AnimationTimer {
 		}
 		// Removes all elements flagged to be removed from the global element list
 		GameController.getActiveElements().removeAll(GameController.getElementsToRemove());
-		for (MovingElement currentNode : GameController.getElementsToRemove()) {
+		for (Element currentNode : GameController.getElementsToRemove()) {
 			Main.getGameScreenController().removeNode(currentNode.getImage());
 		}
 	}

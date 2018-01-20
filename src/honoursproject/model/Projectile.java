@@ -88,7 +88,7 @@ public class Projectile extends MovingElement {
 		double containerWidth = getImage().getParent().getLayoutBounds().getWidth();
 		double containerHeight = getImage().getParent().getLayoutBounds().getHeight();
 		Rectangle projectileImage = (Rectangle) getImage();
-		for (MovingElement current : GameController.getActiveElements()) {
+		for (Element current : GameController.getActiveElements()) {
 			if (current.equals(shooter) || current.equals(this)) {
 				continue;
 			}
@@ -98,7 +98,7 @@ public class Projectile extends MovingElement {
 			if (getXPosition() >= current.getRightSide() || getRightSide() <= current.getXPosition()) {
 			} else if (getYPosition() >= current.getBottomSide() || getBottomSide() <= current.getYPosition()) {
 			} else {
-				handleBeingHit(current);
+				handleBeingHit((MovingElement) current);
 				current.handleBeingHit(this);
 			}
 		}
@@ -143,7 +143,7 @@ public class Projectile extends MovingElement {
 	 * honoursproject.model.Element#handleBeingHit(honoursproject.model.Element)
 	 */
 	@Override
-	public void handleBeingHit(MovingElement hitter) {
+	public void handleBeingHit(Element hitter) {
 		GameController.getElementsToRemove().add(this);
 	}
 
