@@ -4,7 +4,7 @@ import honoursproject.Main;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Wall extends Element {
+public class Wall extends MovingElement {
 
 	//TODO Create StationaryElement class?
 	public Wall() {
@@ -24,6 +24,6 @@ public class Wall extends Element {
 	public void move() {
 	}
 	
-	public void handleBeingHit(Element hitter) {
+	public void handleBeingHit(MovingElement hitter) {
 	}
 }

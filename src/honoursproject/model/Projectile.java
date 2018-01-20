@@ -8,9 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class Projectile extends Element {
+public class Projectile extends MovingElement {
 	final static int DEFAULTVELOCITY = 4;
-	Element shooter;
+	MovingElement shooter;
 
 	public Projectile(ImageView image) {
 		super(image);
@@ -22,7 +22,7 @@ public class Projectile extends Element {
 		// //image.setFill(Color.WHITE);
 	}
 
-	public Projectile(Element shooter, int xVel, int yVel) {
+	public Projectile(MovingElement shooter, int xVel, int yVel) {
 		super();
 		this.shooter = shooter;
 		Rectangle imageRectangle = new Rectangle(5, 5);
@@ -67,7 +67,7 @@ public class Projectile extends Element {
 	/**
 	 * @return the shooter
 	 */
-	public Element getShooter() {
+	public MovingElement getShooter() {
 		return shooter;
 	}
 
@@ -88,7 +88,7 @@ public class Projectile extends Element {
 		double containerWidth = getImage().getParent().getLayoutBounds().getWidth();
 		double containerHeight = getImage().getParent().getLayoutBounds().getHeight();
 		Rectangle projectileImage = (Rectangle) getImage();
-		for (Element current : GameController.getActiveElements()) {
+		for (MovingElement current : GameController.getActiveElements()) {
 			if (current.equals(shooter) || current.equals(this)) {
 				continue;
 			}
@@ -143,7 +143,7 @@ public class Projectile extends Element {
 	 * honoursproject.model.Element#handleBeingHit(honoursproject.model.Element)
 	 */
 	@Override
-	public void handleBeingHit(Element hitter) {
+	public void handleBeingHit(MovingElement hitter) {
 		GameController.getElementsToRemove().add(this);
 	}
 

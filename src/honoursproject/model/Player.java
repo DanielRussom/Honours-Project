@@ -8,7 +8,7 @@ import honoursproject.util.CollisionDetector;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Player extends Element{
+public class Player extends MovingElement{
 
 	protected int health = 100;
 	protected int meleeDamage = 2;
@@ -150,7 +150,7 @@ public class Player extends Element{
 		// Point test = super.checkCollision(newPosition);
 		CollisionDetector.handleBoundaryCollision(this);
 		Point test = new Point((int) getXPosition(), (int) getYPosition());
-		for (Element current : GameController.getActiveElements()) {
+		for (MovingElement current : GameController.getActiveElements()) {
 			if (current.equals(this)) {
 				continue;
 			}
@@ -206,7 +206,7 @@ public class Player extends Element{
 	 * honoursproject.model.Element#handleBeingHit(honoursproject.model.Element)
 	 */
 	@Override
-	public void handleBeingHit(Element hitter) {
+	public void handleBeingHit(MovingElement hitter) {
 		if (hitter instanceof Projectile) {
 			Projectile hittingProjectile = (Projectile) hitter;
 			health -= hittingProjectile.damage;

@@ -2,15 +2,15 @@ package honoursproject;
 
 import java.util.ArrayList;
 
-import honoursproject.model.Element;
+import honoursproject.model.MovingElement;
 import honoursproject.model.Player;
 
 public class GameController {
-	private static ArrayList<Element> activeElements = new ArrayList<Element>();
-	private static ArrayList<Element> elementsToRemove = new ArrayList<Element>();
+	private static ArrayList<MovingElement> activeElements = new ArrayList<MovingElement>();
+	private static ArrayList<MovingElement> elementsToRemove = new ArrayList<MovingElement>();
 	private static Player currentPlayer;
 	private static Player currentPlayer2;
-	public static ArrayList<Element> resetState = new ArrayList<Element>();
+	public static ArrayList<MovingElement> resetState = new ArrayList<MovingElement>();
 
 	/**
 	 * Ends the current game
@@ -25,12 +25,12 @@ public class GameController {
 	 */
 	public static void manualGameUpdate() {
 		// Creates a local copy of current active elements
-		ArrayList<Element> localActiveElements = new ArrayList<Element>();
-		for (Element current : GameController.getActiveElements()) {
+		ArrayList<MovingElement> localActiveElements = new ArrayList<MovingElement>();
+		for (MovingElement current : GameController.getActiveElements()) {
 			localActiveElements.add(current);
 		}
 		// Iterates through each active element
-		for (Element current : localActiveElements) {
+		for (MovingElement current : localActiveElements) {
 			// Skips the current element if it is flagged to be removed
 			if (GameController.getElementsToRemove().contains(current)) {
 				System.out.println("SKIPPED " + current.toString());
@@ -41,7 +41,7 @@ public class GameController {
 		}
 		// Removes all elements flagged to be removed from the global element list
 		GameController.getActiveElements().removeAll(GameController.getElementsToRemove());
-		for (Element currentNode : GameController.getElementsToRemove()) {
+		for (MovingElement currentNode : GameController.getElementsToRemove()) {
 			Main.getGameScreenController().removeNode(currentNode.getImage());
 		}
 	}
@@ -51,7 +51,7 @@ public class GameController {
 	 * 
 	 * @return the activeElements
 	 */
-	public static ArrayList<Element> getActiveElements() {
+	public static ArrayList<MovingElement> getActiveElements() {
 		return activeElements;
 	}
 
@@ -61,7 +61,7 @@ public class GameController {
 	 * @param element
 	 *            Element to be added to activeElements
 	 */
-	public static void addActiveElement(Element element) {
+	public static void addActiveElement(MovingElement element) {
 		getActiveElements().add(element);
 	}
 
@@ -77,7 +77,7 @@ public class GameController {
 	 * 
 	 * @return the elementsToRemove
 	 */
-	public static ArrayList<Element> getElementsToRemove() {
+	public static ArrayList<MovingElement> getElementsToRemove() {
 		return elementsToRemove;
 	}
 
