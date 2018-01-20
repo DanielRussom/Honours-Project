@@ -23,10 +23,7 @@ public class MovingElement extends Element {
 	}
 
 	public MovingElement(Node image) {
-		super();
-		this.image = image;
-		setXPosition(image.getLayoutX() + image.getTranslateX());
-		setYPosition(image.getLayoutY() + image.getTranslateY());
+		super(image);
 	}
 
 	/**
@@ -189,10 +186,12 @@ public class MovingElement extends Element {
 		resetShootCooldown();
 	}
 
+	//TODO
 	/**
 	 * Checks wall collision
 	 * 
 	 * @param newPosition
+	 *            - The new position to check if collision occurs on
 	 * @return
 	 */
 	public Point checkCollision(Point newPosition) {
@@ -217,23 +216,6 @@ public class MovingElement extends Element {
 	public void handleBeingHit(MovingElement hitter) {
 		System.out.println("Default hit! - This should be overridden!");
 		System.out.println(this.toString() + " was hit by " + hitter.toString());
-	}
-
-	/**
-	 * Returns the element's image.
-	 * 
-	 * @return the image
-	 */
-	public Node getImage() {
-		return image;
-	}
-
-	/**
-	 * @param image
-	 *            the image to set
-	 */
-	public void setImage(ImageView image) {
-		this.image = image;
 	}
 
 	public void move() {
@@ -286,26 +268,21 @@ public class MovingElement extends Element {
 		this.yVel += value;
 	}
 
-	public double getXPosition() {
-		return xPosition;
-	}
-
-	public void setXPosition(double xPosition) {
-		this.xPosition = xPosition;
-	}
-
-	public double getYPosition() {
-		return yPosition;
-	}
-
-	public void setYPosition(double yPosition) {
-		this.yPosition = yPosition;
-	}
-
+	/**
+	 * Gets the current movement speed
+	 * 
+	 * @return the movement speed
+	 */
 	public double getMoveSpeed() {
 		return moveSpeed;
 	}
 
+	/**
+	 * Sets the current movement speed
+	 * 
+	 * @param moveSpeed
+	 *            - The new movement speed
+	 */
 	public void setMoveSpeed(double moveSpeed) {
 		this.moveSpeed = moveSpeed;
 	}
