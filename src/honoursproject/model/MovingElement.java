@@ -8,29 +8,20 @@ import honoursproject.Main;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 
-public class MovingElement implements Cloneable {
+public class MovingElement extends Element {
 	protected double xVel = 0;
 	protected double xVelDecimal = 0;
 	protected double yVel = 0;
 	protected double yVelDecimal = 0;
 	protected double moveSpeed = 2;
-	protected double xPosition = 0;
-	protected double yPosition = 0;
-	protected Node image;
 	protected final int SHOOTCOOLDOWN = 30;
 	protected int currentShootCooldown = 0;
 	protected int damage;
 
 	public MovingElement() {
-		//TODO PH?
+		// TODO PH?
 	}
 
-	//INCASE
-	@Override
-	public MovingElement clone() throws CloneNotSupportedException {
-	    return (MovingElement) super.clone();
-	}
-	
 	public MovingElement(Node image) {
 		super();
 		this.image = image;
