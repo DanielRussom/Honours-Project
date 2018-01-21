@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class GameScreenController {

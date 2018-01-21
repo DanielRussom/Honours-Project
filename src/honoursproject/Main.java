@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 
 import com.anji.neat.Evolver;
-import com.anji.util.Properties;
 
 import honoursproject.util.GameScreenLoader;
 import honoursproject.util.KeyboardReciever;

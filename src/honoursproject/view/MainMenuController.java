@@ -1,14 +1,9 @@
 package honoursproject.view;
 
-import java.util.Optional;
-
 import honoursproject.Main;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 
 public class MainMenuController {
 	@FXML

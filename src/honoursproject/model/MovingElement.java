@@ -1,12 +1,8 @@
 package honoursproject.model;
 
-import java.awt.Point;
-
 import honoursproject.GameController;
 import honoursproject.Main;
-//import javafx.geometry.Point2D;
 import javafx.scene.Node;
-import javafx.scene.image.ImageView;
 
 public abstract class MovingElement extends Element {
 	protected double xVel = 0;
@@ -35,8 +31,6 @@ public abstract class MovingElement extends Element {
 		image.setLayoutX(xPosition);
 		image.setLayoutY(yPosition);
 	}
-
-	
 
 	/**
 	 * Returns the y coordinate needed to align an object with this element
@@ -118,14 +112,14 @@ public abstract class MovingElement extends Element {
 		resetShootCooldown();
 	}
 
-	//TODO
+	// INCASE
 	/**
 	 * Checks wall collision
 	 * 
 	 * @param newPosition
 	 *            - The new position to check if collision occurs on
 	 * @return
-	 */
+	 
 	public Point checkCollision(Point newPosition) {
 		double containerWidth = image.getParent().getLayoutBounds().getWidth();
 		double containerHeight = image.getParent().getLayoutBounds().getHeight();
@@ -143,7 +137,7 @@ public abstract class MovingElement extends Element {
 		}
 		return updatedPosition;
 	}
-	
+
 	/**
 	 * @return the xVel
 	 */

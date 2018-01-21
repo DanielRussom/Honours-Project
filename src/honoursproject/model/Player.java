@@ -165,9 +165,8 @@ public class Player extends MovingElement{
 					current.handleBeingHit(this);
 					continue;
 				}
-				// INITIALIZE THESE TO HIGH NUMBERS
-				int xOffset = 500;
-				int yOffset = 500;
+				int xOffset = 1000;
+				int yOffset = 1000;
 				if (xVel < 0) {
 					xOffset = (int) (getXPosition() - current.getRightSide());
 				} else if (xVel > 0) {

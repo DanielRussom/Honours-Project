@@ -3,7 +3,6 @@ package honoursproject.model;
 import java.awt.Point;
 
 import honoursproject.GameController;
-import honoursproject.Main;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -103,7 +102,6 @@ public class Projectile extends MovingElement {
 			}
 		}
 
-		System.out.println(getBottomSide() + " " + containerWidth);
 		if (getXPosition() < 0) {
 			projectileImage.setWidth(projectileImage.getWidth() + getXPosition());
 			setXPosition(0);

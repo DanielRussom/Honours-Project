@@ -83,7 +83,7 @@ public class Evolver implements Configurable {
 	 * @throws Exception
 	 */
 	public static void setup() throws Exception {
-		writer = new BufferedWriter(new FileWriter("Fitness"));
+		// writer = new BufferedWriter(new FileWriter("Fitness"));
 		System.out.println(Copyright.STRING);
 		// Loads in properties file
 		Properties props = new Properties("honoursproject/anji/properties.txt");
@@ -100,8 +100,14 @@ public class Evolver implements Configurable {
 	private void run() {
 		// Stores the start time of the run
 		Date runStartDate = Calendar.getInstance().getTime();
-		logger.info("Run: start");
 		DateFormat fmt = new SimpleDateFormat("HH:mm:ss");
+		try {
+			writer = new BufferedWriter(new FileWriter("Fitness" +  fmt.format(runStartDate) + ".txt"));
+		} catch (IOException e) {
+			// TODO
+			e.printStackTrace();
+		}
+		logger.info("Run: start");
 		// Initializes the results
 		int generationOfFirstSolution = -1;
 		champ = genotype.getFittestChromosome();
@@ -138,6 +144,11 @@ public class Evolver implements Configurable {
 		logConclusion(generationOfFirstSolution, champ);
 		Date runEndDate = Calendar.getInstance().getTime();
 		long durationMillis = runEndDate.getTime() - runStartDate.getTime();
+		try {
+			writer.write("Time: " + durationMillis);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		logger.info("Run: end [" + fmt.format(runStartDate) + " - " + fmt.format(runEndDate) + "] [" + durationMillis
 				+ "]");
 	}

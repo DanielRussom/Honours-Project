@@ -1,9 +1,7 @@
 package honoursproject.util;
 
 import honoursproject.GameController;
-import honoursproject.Main;
 import honoursproject.model.Element;
-import honoursproject.model.MovingElement;
 import honoursproject.model.Projectile;
 import javafx.scene.shape.Rectangle;
 
