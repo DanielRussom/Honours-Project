@@ -1,7 +1,7 @@
 package honoursproject.model;
 
 import honoursproject.Main;
-import honoursproject.model.movementpatterns.MovementFigureEight;
+import honoursproject.model.movementpatterns.MovementLine;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -14,7 +14,7 @@ public class Enemy extends Player{
 		tempImage.setFitWidth(50);
 		this.image = tempImage;
 		damage = 5;
-		setMoveBehaviour(new MovementFigureEight());
+		setMoveBehaviour(new MovementLine());
 		
 	}
 
