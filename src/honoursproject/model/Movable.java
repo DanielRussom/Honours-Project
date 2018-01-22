@@ -1,7 +1,7 @@
 package honoursproject.model;
 
 public interface Movable {
-
+	
 	/**
 	 * Movement
 	 * 

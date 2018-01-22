@@ -101,8 +101,9 @@ public class Evolver implements Configurable {
 		// Stores the start time of the run
 		Date runStartDate = Calendar.getInstance().getTime();
 		DateFormat fmt = new SimpleDateFormat("HH:mm:ss");
+		DateFormat fileFmt = new SimpleDateFormat("HH-mm-ss");
 		try {
-			writer = new BufferedWriter(new FileWriter("Fitness" +  fmt.format(runStartDate) + ".txt"));
+			writer = new BufferedWriter(new FileWriter("Fitness" +  fileFmt.format(runStartDate) + ".txt"));
 		} catch (IOException e) {
 			// TODO
 			e.printStackTrace();

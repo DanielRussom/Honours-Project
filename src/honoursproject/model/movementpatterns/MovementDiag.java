@@ -14,7 +14,7 @@ public class MovementDiag implements Movable {
 
 	@Override
 	public void move(Player player) {
-		// Checks if this element is moving upwards
+		// Checks if this element is moving up
 		if (player.getYVel() < 0) {
 			// If too high, the element starts moving downwards
 			if (player.getYPosition() < 30) {
@@ -22,7 +22,7 @@ public class MovementDiag implements Movable {
 			}
 			// Checks if this element is moving downwards
 		} else if (player.getYVel() > 0) {
-			// If too low, the element starts moving upwards
+			// If too low, the element starts moving up
 			if (player.getBottomSide() > CollisionDetector.getContainerHeight() - 30) {
 				player.setYVel(player.getYVel() * -1);
 			}
