@@ -4,6 +4,7 @@ import java.util.Random;
 
 import honoursproject.model.Movable;
 import honoursproject.model.Player;
+import honoursproject.util.CollisionDetector;
 
 public class MovementFigureEight implements Movable {
 	private boolean isMovingUp = true;
@@ -15,8 +16,8 @@ public class MovementFigureEight implements Movable {
 
 	@Override
 	public void move(Player player) {
-		double containerHeight = player.getImage().getParent().getLayoutBounds().getHeight();
-		double containerWidth = player.getImage().getParent().getLayoutBounds().getWidth();
+		double containerHeight = CollisionDetector.getContainerHeight();
+		double containerWidth = CollisionDetector.getContainerWidth();
 		// Checks if this element is moving up
 		if (player.getYVel() < 0) {
 			// Checks if this element has reached the top

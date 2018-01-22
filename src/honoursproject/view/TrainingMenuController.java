@@ -1,12 +1,20 @@
 package honoursproject.view;
 
 import honoursproject.Main;
+import javafx.fxml.FXML;
 
 public class TrainingMenuController {
 
-	public void playAvoidingDamageTraining() throws Throwable {
+	@FXML
+	public void playTrainingArea2() throws Throwable {
 		Main.showGameRoot();
-		Main.showTrainingArea();
+		Main.showTrainingArea2();
+	}
+	
+	@FXML
+	public void playTrainingArea3() throws Throwable {
+		Main.showGameRoot();
+		Main.showTrainingArea3();
 	}
 	
 	public void showMainMenu() {

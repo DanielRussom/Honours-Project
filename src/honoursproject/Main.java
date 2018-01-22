@@ -171,11 +171,37 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Displays the training area.
+	 * Displays the second training area.
 	 * 
 	 * @throws Throwable
 	 */
-	public static void showTrainingArea() throws Throwable {
+	public static void showTrainingArea2() throws Throwable {
+		try {
+			GameController.clearActiveElements();
+			// Load the training area from FXML file
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/TrainingArea.fxml"));
+			AnchorPane trainingArea = (AnchorPane) loader.load();
+			gameScreenController = (GameScreenController) loader.getController();
+			// Displays the game screen into the center of game root layout
+			gameRootLayoutController.setGameScreen(trainingArea);
+			// Initializes the game elements from the passed in pane
+			GameScreenLoader.initGameElements(trainingArea);
+			//GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
+			// Begins the FrameThreadController
+			setFrameThreadController(new FrameThreadController());
+			getFrameThreadController().start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Displays the third training area.
+	 * 
+	 * @throws Throwable
+	 */
+	public static void showTrainingArea3() throws Throwable {
 		try {
 			GameController.clearActiveElements();
 			// Load the training area from FXML file

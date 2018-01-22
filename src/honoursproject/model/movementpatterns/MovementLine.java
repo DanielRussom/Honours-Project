@@ -6,7 +6,6 @@ import honoursproject.model.Movable;
 import honoursproject.model.Player;
 
 public class MovementLine implements Movable {
-
 	double maxOffset = 5;
 	double currentXOffset = 0;
 	double currentYOffset = 0;
@@ -14,11 +13,15 @@ public class MovementLine implements Movable {
 
 	@Override
 	public void move(Player player) {
+		// Checks if the element is moving left
 		if (player.getXVel() < 0) {
+			// If at the left edge, move right
 			if (player.getXPosition() < 30) {
 				player.setXVel(2);
 			}
+			// Checks if the element is moving right
 		} else if (player.getXVel() > 0) {
+			// If at the right edge, move left
 			if (player.getRightSide() > player.getImage().getParent().getLayoutBounds().getWidth() - 30) {
 				player.setXVel(-2);
 			}
