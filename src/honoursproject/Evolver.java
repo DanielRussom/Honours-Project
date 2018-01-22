@@ -105,7 +105,6 @@ public class Evolver implements Configurable {
 		try {
 			writer = new BufferedWriter(new FileWriter("Fitness" +  fileFmt.format(runStartDate) + ".txt"));
 		} catch (IOException e) {
-			// TODO
 			e.printStackTrace();
 		}
 		logger.info("Run: start");

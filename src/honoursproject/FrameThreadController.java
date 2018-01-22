@@ -31,6 +31,8 @@ public class FrameThreadController extends AnimationTimer {
 		}
 		CollisionDetector.initContainerValues(GameController.getActiveElements().get(0));
 		if(triggerEvolver) {
+			
+			
 			try {
 				
 				
@@ -39,7 +41,6 @@ public class FrameThreadController extends AnimationTimer {
 				}
 				Evolver.setup();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			triggerEvolver = false;

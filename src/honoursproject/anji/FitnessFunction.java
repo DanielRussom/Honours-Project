@@ -106,7 +106,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 				fitness += singleTrial(activator);
 			}
 			// Stores the average fitness of the chromosome
-			c.setFitnessValue(fitness/numTrials);
+			c.setFitnessValue(fitness / numTrials);
 		} catch (Throwable e) {
 			logger.warn("error evaluating chromosome " + c.toString(), e);
 			c.setFitnessValue(0);
@@ -195,7 +195,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 	 * @return game inputs
 	 */
 	private double[] getNetworkInput() {
-		// TODO Change PH value?
+		// Initializes input array to have more than enough needed spaces
 		double[] input = new double[100];
 		// Stores player variables
 		Player player = GameController.getCurrentPlayer();
@@ -218,7 +218,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 				}
 			}
 		}
-		//TODO Tidy
+		// TODO Tidy
 		// Stories enemy variables for each enemy
 		int sizePerEnemy = 3;
 		for (int i = 0; i < enemies.size(); i++) {

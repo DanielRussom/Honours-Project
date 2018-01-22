@@ -112,32 +112,6 @@ public abstract class MovingElement extends Element {
 		resetShootCooldown();
 	}
 
-	// INCASE
-	/**
-	 * Checks wall collision
-	 * 
-	 * @param newPosition
-	 *            - The new position to check if collision occurs on
-	 * @return
-	 
-	public Point checkCollision(Point newPosition) {
-		double containerWidth = image.getParent().getLayoutBounds().getWidth();
-		double containerHeight = image.getParent().getLayoutBounds().getHeight();
-		// TODO Tidy up
-		Point updatedPosition = newPosition;
-		if (newPosition.getX() < 0) {
-			updatedPosition.setLocation(0, updatedPosition.getY());
-		} else if (getRightSide() > containerWidth) {
-			updatedPosition.setLocation(containerWidth - image.getLayoutBounds().getWidth(), updatedPosition.getY());
-		}
-		if (newPosition.getY() < 0) {
-			updatedPosition.setLocation(updatedPosition.getX(), 0);
-		} else if (getBottomSide() > containerHeight) {
-			updatedPosition.setLocation(updatedPosition.getX(), containerHeight - image.getLayoutBounds().getHeight());
-		}
-		return updatedPosition;
-	}
-
 	/**
 	 * @return the xVel
 	 */

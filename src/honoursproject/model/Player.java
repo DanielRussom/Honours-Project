@@ -64,7 +64,6 @@ public class Player extends MovingElement{
 		xKnockBack = reduceKnockBack(xKnockBack);
 		yKnockBack = reduceKnockBack(yKnockBack);
 
-		// TODO Balancing? Diagonal speed sin(45)?
 		// Reduce diagonal speed
 		if (updatedXVel != 0 && updatedYVel != 0) {
 			updatedXVel = updatedXVel*0.60;
