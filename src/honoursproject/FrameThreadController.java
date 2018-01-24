@@ -27,16 +27,18 @@ public class FrameThreadController extends AnimationTimer {
 		// Decrements the set up time
 		if (setupTime > 0) {
 			setupTime -= 1;
+			if(setupTime == 0) {
+				CollisionDetector.initContainerValues(GameController.getActiveElements().get(0));
+			}
 			return;
 		}
-		CollisionDetector.initContainerValues(GameController.getActiveElements().get(0));
-		if(triggerEvolver) {
+		if (triggerEvolver) {
+
 			
-			
+
 			try {
-				
-				
-				for(int i = 0; i < GameController.getActiveElements().size(); i++) {
+
+				for (int i = 0; i < GameController.getActiveElements().size(); i++) {
 					GameController.resetState.add(GameController.getActiveElements().get(i).clone());
 				}
 				Evolver.setup();
