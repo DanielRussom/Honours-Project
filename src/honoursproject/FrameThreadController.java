@@ -24,23 +24,25 @@ public class FrameThreadController extends AnimationTimer {
 				return;
 			}
 		}
-		// Decrements the set up time
+		// Checks if the game is ready to start
 		if (setupTime > 0) {
+			// Decrements the setup time
 			setupTime -= 1;
+			// Checks if the game is going to start next turn
 			if(setupTime == 0) {
+				// Initializes container values
 				CollisionDetector.initContainerValues(GameController.getActiveElements().get(0));
 			}
 			return;
 		}
+		// Checks if the evolver should be started
 		if (triggerEvolver) {
-
-			
-
 			try {
-
+				// Stores the initial elements as the reset state
 				for (int i = 0; i < GameController.getActiveElements().size(); i++) {
 					GameController.resetState.add(GameController.getActiveElements().get(i).clone());
 				}
+				// Calls a method to setup the evolver
 				Evolver.setup();
 			} catch (Exception e) {
 				e.printStackTrace();
