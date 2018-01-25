@@ -1,7 +1,5 @@
 package honoursproject.model.movementpatterns;
 
-import java.util.Random;
-
 import honoursproject.model.Movable;
 import honoursproject.model.Player;
 import honoursproject.util.CollisionDetector;
@@ -12,7 +10,6 @@ public class MovementDiag implements Movable {
 	private double maxOffset = 5;
 	private double currentXOffset = 0;
 	private double currentYOffset = 0;
-	private Random rand = new Random();
 
 	@Override
 	public void move(Player player) {
@@ -45,6 +42,7 @@ public class MovementDiag implements Movable {
 		}
 		// Checks if there is noise to be applied
 		if (maxOffset > 0) {
+			// Calls a utility to apply noise
 			MovementNoiseApplier.applyNoise(player, maxOffset, currentXOffset, currentYOffset);
 		}
 	}
