@@ -7,6 +7,7 @@ import honoursproject.model.Player;
 import honoursproject.util.CollisionDetector;
 
 public class MovementDiag implements Movable {
+	int shootingType = 0;
 	private double maxOffset = 5;
 	private double currentXOffset = 0;
 	private double currentYOffset = 0;
