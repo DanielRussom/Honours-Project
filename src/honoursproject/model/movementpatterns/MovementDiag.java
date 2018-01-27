@@ -6,7 +6,7 @@ import honoursproject.util.CollisionDetector;
 import honoursproject.util.MovementNoiseApplier;
 
 public class MovementDiag implements Movable {
-	int shootingType = 0;
+	private boolean isShootingEnabled = false;
 	private double maxOffset = 5;
 	private double currentXOffset = 0;
 	private double currentYOffset = 0;
@@ -52,6 +52,14 @@ public class MovementDiag implements Movable {
 		player.setXVel(1);
 		player.setYVel(3);
 	}
+	
+
+	@Override
+	public void moveSetUp(Player player, boolean isShootingEnabled) {
+		player.setXVel(1);
+		player.setYVel(3);
+		this.isShootingEnabled = isShootingEnabled;
+	}
 
 	@Override
 	public void moveSetUp(Player player, double maxNoise) {
@@ -59,4 +67,13 @@ public class MovementDiag implements Movable {
 		player.setYVel(3);
 		this.maxOffset = maxNoise;
 	}
+	
+	@Override
+	public void moveSetUp(Player player, double maxNoise, boolean isShootingEnabled) {
+		player.setXVel(1);
+		player.setYVel(3);
+		this.isShootingEnabled = isShootingEnabled;
+		this.maxOffset = maxNoise;
+	}
+
 }

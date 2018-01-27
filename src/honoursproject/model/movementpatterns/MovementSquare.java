@@ -62,4 +62,16 @@ public class MovementSquare implements Movable {
 
 	}
 
+	@Override
+	public void moveSetUp(Player player, boolean isShootingEnabled) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void moveSetUp(Player player, double maxNoise, boolean isShootingEnabled) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

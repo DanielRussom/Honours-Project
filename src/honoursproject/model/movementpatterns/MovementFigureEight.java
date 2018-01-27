@@ -91,4 +91,16 @@ public class MovementFigureEight implements Movable {
 		player.setYVel(-2);
 		this.maxOffset = maxNoise;
 	}
+
+	@Override
+	public void moveSetUp(Player player, boolean isShootingEnabled) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void moveSetUp(Player player, double maxNoise, boolean isShootingEnabled) {
+		// TODO Auto-generated method stub
+		
+	}
 }
