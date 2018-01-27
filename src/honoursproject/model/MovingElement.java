@@ -31,7 +31,7 @@ public abstract class MovingElement extends Element {
 		image.setLayoutX(xPosition);
 		image.setLayoutY(yPosition);
 	}
-
+	
 	/**
 	 * Returns the y coordinate needed to align an object with this element
 	 * vertically.

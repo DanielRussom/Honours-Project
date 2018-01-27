@@ -7,7 +7,7 @@ import honoursproject.util.CollisionDetector;
 import honoursproject.util.MovementNoiseApplier;
 
 public class MovementDiag implements Movable {
-	private int shootingType = 0;
+	private int shootingType = 1;
 	private double maxOffset = 5;
 	private double currentXOffset = 0;
 	private double currentYOffset = 0;
@@ -42,7 +42,16 @@ public class MovementDiag implements Movable {
 			}
 		}
 		// Checks if this element is able to shoot
-		if(shootingType>0) {
+		if(shootingType==1) {
+			Player target = GameController.getCurrentPlayer();
+			double yDistance = player.getVerticalCenter(0) - target.getVerticalCenter(0);
+			double xDistance = player.getHorizontalCenter(0) - target.getHorizontalCenter(0);
+			if(Math.abs(yDistance) > Math.abs(xDistance)) {
+				System.out.println("y");
+			} else {
+				System.out.println("x");
+			}
+			//if(target.getRightSide() < )
 			//TODO
 			player.shoot('L');
 		}
