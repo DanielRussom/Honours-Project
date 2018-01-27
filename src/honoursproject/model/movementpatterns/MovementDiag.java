@@ -42,18 +42,23 @@ public class MovementDiag implements Movable {
 			}
 		}
 		// Checks if this element is able to shoot
-		if(shootingType==1) {
+		if (shootingType == 1) {
+			// Stores a local copy of the player
 			Player target = GameController.getCurrentPlayer();
+			// Gets the x and y distances between this element and the target
 			double yDistance = player.getVerticalCenter(0) - target.getVerticalCenter(0);
 			double xDistance = player.getHorizontalCenter(0) - target.getHorizontalCenter(0);
-			if(Math.abs(yDistance) > Math.abs(xDistance)) {
-				if(yDistance > 0) {
+			// Checks which distance is larger
+			if (Math.abs(yDistance) > Math.abs(xDistance)) {
+				// Shoots in the corresponding vertical direction
+				if (yDistance > 0) {
 					player.shoot('U');
 				} else {
 					player.shoot('D');
 				}
 			} else {
-				if(xDistance > 0) {
+				// Shoots in the corresponding horizontal direction
+				if (xDistance > 0) {
 					player.shoot('L');
 				} else {
 					player.shoot('R');
@@ -72,7 +77,6 @@ public class MovementDiag implements Movable {
 		player.setXVel(1);
 		player.setYVel(3);
 	}
-	
 
 	@Override
 	public void moveSetUp(Player player, int shootingType) {
@@ -87,7 +91,7 @@ public class MovementDiag implements Movable {
 		player.setYVel(3);
 		this.maxOffset = maxNoise;
 	}
-	
+
 	@Override
 	public void moveSetUp(Player player, double maxNoise, int shootingType) {
 		player.setXVel(1);

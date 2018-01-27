@@ -25,18 +25,24 @@ public class MovementLine implements Movable {
 			if (player.getRightSide() > player.getImage().getParent().getLayoutBounds().getWidth() - 30) {
 				player.setXVel(-2);
 			}
-		} // Checks if this element is able to shoot
+		}
+		// Checks if this element is able to shoot
 		if (shootingType == 1) {
+			// Stores a local copy of the player
 			Player target = GameController.getCurrentPlayer();
+			// Gets the x and y distances between this element and the target
 			double yDistance = player.getVerticalCenter(0) - target.getVerticalCenter(0);
 			double xDistance = player.getHorizontalCenter(0) - target.getHorizontalCenter(0);
+			// Checks which distance is larger
 			if (Math.abs(yDistance) > Math.abs(xDistance)) {
+				// Shoots in the corresponding vertical direction
 				if (yDistance > 0) {
 					player.shoot('U');
 				} else {
 					player.shoot('D');
 				}
 			} else {
+				// Shoots in the corresponding horizontal direction
 				if (xDistance > 0) {
 					player.shoot('L');
 				} else {
