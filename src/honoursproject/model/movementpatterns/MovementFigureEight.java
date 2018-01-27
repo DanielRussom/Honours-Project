@@ -1,5 +1,6 @@
 package honoursproject.model.movementpatterns;
 
+import honoursproject.GameController;
 import honoursproject.model.Movable;
 import honoursproject.model.Player;
 import honoursproject.util.CollisionDetector;
@@ -11,6 +12,7 @@ public class MovementFigureEight implements Movable {
 	private double maxOffset = 5;
 	private double currentXOffset = 0;
 	private double currentYOffset = 0;
+	private int shootingType = 1;
 
 	@Override
 	public void move(Player player) {
@@ -72,6 +74,26 @@ public class MovementFigureEight implements Movable {
 				}
 			}
 		}
+		// Checks if this element is able to shoot
+		if (shootingType == 1) {
+			Player target = GameController.getCurrentPlayer();
+			double yDistance = player.getVerticalCenter(0) - target.getVerticalCenter(0);
+			double xDistance = player.getHorizontalCenter(0) - target.getHorizontalCenter(0);
+			if (Math.abs(yDistance) > Math.abs(xDistance)) {
+				if (yDistance > 0) {
+					player.shoot('U');
+				} else {
+					player.shoot('D');
+				}
+			} else {
+				if (xDistance > 0) {
+					player.shoot('L');
+				} else {
+					player.shoot('R');
+				}
+			}
+		}
+
 		// Checks if there is noise to be applied
 		if (maxOffset > 0) {
 			// Calls a utility to apply noise
@@ -94,13 +116,14 @@ public class MovementFigureEight implements Movable {
 
 	@Override
 	public void moveSetUp(Player player, int shootingType) {
-		// TODO Auto-generated method stub
-		
+		this.shootingType = shootingType;
 	}
 
 	@Override
 	public void moveSetUp(Player player, double maxNoise, int shootingType) {
-		// TODO Auto-generated method stub
-		
+		player.setXVel(0);
+		player.setYVel(-2);
+		this.shootingType = shootingType;
+		this.maxOffset = maxNoise;
 	}
 }
