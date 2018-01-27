@@ -1,12 +1,13 @@
 package honoursproject.model.movementpatterns;
 
+import honoursproject.GameController;
 import honoursproject.model.Movable;
 import honoursproject.model.Player;
 import honoursproject.util.CollisionDetector;
 import honoursproject.util.MovementNoiseApplier;
 
 public class MovementDiag implements Movable {
-	private boolean isShootingEnabled = false;
+	private boolean isShootingEnabled = true;
 	private double maxOffset = 5;
 	private double currentXOffset = 0;
 	private double currentYOffset = 0;
@@ -39,6 +40,11 @@ public class MovementDiag implements Movable {
 			if (player.getRightSide() > CollisionDetector.getContainerWidth() - 30) {
 				player.setXVel(player.getXVel() * -1);
 			}
+		}
+		// Checks if this element is able to shoot
+		if(isShootingEnabled) {
+			//TODO
+			player.shoot('L');
 		}
 		// Checks if there is noise to be applied
 		if (maxOffset > 0) {
