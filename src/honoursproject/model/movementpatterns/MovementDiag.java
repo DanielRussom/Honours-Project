@@ -47,13 +47,18 @@ public class MovementDiag implements Movable {
 			double yDistance = player.getVerticalCenter(0) - target.getVerticalCenter(0);
 			double xDistance = player.getHorizontalCenter(0) - target.getHorizontalCenter(0);
 			if(Math.abs(yDistance) > Math.abs(xDistance)) {
-				System.out.println("y");
+				if(yDistance > 0) {
+					player.shoot('U');
+				} else {
+					player.shoot('D');
+				}
 			} else {
-				System.out.println("x");
+				if(xDistance > 0) {
+					player.shoot('L');
+				} else {
+					player.shoot('R');
+				}
 			}
-			//if(target.getRightSide() < )
-			//TODO
-			player.shoot('L');
 		}
 		// Checks if there is noise to be applied
 		if (maxOffset > 0) {

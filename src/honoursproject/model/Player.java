@@ -146,7 +146,6 @@ public class Player extends MovingElement{
 		}
 	
 	public Point checkCollision(Point newPosition) {
-		// Point test = super.checkCollision(newPosition);
 		CollisionDetector.handleBoundaryCollision(this);
 		Point test = new Point((int) getXPosition(), (int) getYPosition());
 		for (Element current : GameController.getActiveElements()) {
