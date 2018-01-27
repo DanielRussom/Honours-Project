@@ -57,17 +57,18 @@ public class MovementLine implements Movable {
 		player.setYVel(0);
 	}
 
-	public void moveSetUp(Player player, double maxNoise) {
-		player.setXVel(2);
-		player.setYVel(0);
-		maxOffset = maxNoise;
-	}
-
 	@Override
 	public void moveSetUp(Player player, int shootingType) {
 		player.setXVel(2);
 		player.setYVel(0);
 		this.shootingType = shootingType;
+	}
+
+	@Override
+	public void moveSetUp(Player player, double maxNoise) {
+		player.setXVel(2);
+		player.setYVel(0);
+		maxOffset = maxNoise;
 	}
 
 	@Override
