@@ -23,10 +23,10 @@ public interface Movable {
 	 * 
 	 * @param player
 	 *            - the movable player
-	 * @param isShootingEnabled
-	 *            - the shooting enabled status
+	 * @param shootingType
+	 *            - the shooting mode
 	 */
-	public void moveSetUp(Player player, boolean isShootingEnabled);
+	public void moveSetUp(Player player, int shootingType);
 
 	/**
 	 * Initializes the movement pattern with noise
@@ -45,8 +45,8 @@ public interface Movable {
 	 *            - the movable player
 	 * @param maxNoise
 	 *            - the max amount of noise
-	 * @param isShootingEnabled
-	 *            - the shooting enabled status
+	 * @param shootingType
+	 *            - the shooting mode
 	 */
-	void moveSetUp(Player player, double maxNoise, boolean isShootingEnabled);
+	void moveSetUp(Player player, double maxNoise, int shootingType);
 }

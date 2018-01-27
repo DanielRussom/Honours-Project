@@ -44,13 +44,13 @@ public class MovementLine implements Movable {
 	}
 
 	@Override
-	public void moveSetUp(Player player, boolean isShootingEnabled) {
+	public void moveSetUp(Player player, int shootingType) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void moveSetUp(Player player, double maxNoise, boolean isShootingEnabled) {
+	public void moveSetUp(Player player, double maxNoise, int shootingType) {
 		// TODO Auto-generated method stub
 		
 	}
