@@ -43,9 +43,11 @@ public class MovementDiag implements Movable {
 				player.setXVel(player.getXVel() * -1);
 			}
 		}
+		// Checks the shooting type of this element
 		if (shootingType == 1) {
 			Random rand = new Random();
 			int direction = rand.nextInt(4);
+			// Randomly decides a direction to fire
 			switch (direction) {
 			case 0:
 				player.shoot('U');
@@ -59,13 +61,11 @@ public class MovementDiag implements Movable {
 			case 3:
 				player.shoot('R');
 				break;
-				//INCASE
+			// INCASE
 			default:
 				System.out.println("Shoot error");
 			}
-		}
-		// Checks if this element is able to shoot
-		if (shootingType == 2) {
+		} else if (shootingType == 2) {
 			// Stores a local copy of the player
 			Player target = GameController.getCurrentPlayer();
 			// Gets the x and y distances between this element and the target

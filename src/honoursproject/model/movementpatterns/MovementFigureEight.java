@@ -1,5 +1,7 @@
 package honoursproject.model.movementpatterns;
 
+import java.util.Random;
+
 import honoursproject.GameController;
 import honoursproject.model.Movable;
 import honoursproject.model.Player;
@@ -74,8 +76,29 @@ public class MovementFigureEight implements Movable {
 				}
 			}
 		}
-		// Checks if this element is able to shoot
+		// Checks the shooting type of this element
 		if (shootingType == 1) {
+			Random rand = new Random();
+			int direction = rand.nextInt(4);
+			// Randomly decides a direction to fire
+			switch (direction) {
+			case 0:
+				player.shoot('U');
+				break;
+			case 1:
+				player.shoot('D');
+				break;
+			case 2:
+				player.shoot('L');
+				break;
+			case 3:
+				player.shoot('R');
+				break;
+			// INCASE
+			default:
+				System.out.println("Shoot error");
+			}
+		} else if (shootingType == 2) {
 			// Stores a local copy of the player
 			Player target = GameController.getCurrentPlayer();
 			// Gets the x and y distances between this element and the target
