@@ -19,9 +19,9 @@ import com.anji.util.Properties;
 import com.anji.util.Randomizer;
 
 import honoursproject.GameController;
-import honoursproject.model.MovingElement;
 import honoursproject.model.Element;
 import honoursproject.model.Enemy;
+import honoursproject.model.MovingElement;
 import honoursproject.model.Player;
 import honoursproject.model.Projectile;
 
@@ -180,6 +180,9 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 				break;
 			default:
 				throw new RuntimeException("This shouldn't happen");
+			}
+			if(networkOutput[8] > 0.5) {
+				//System.out.println("WOAH");
 			}
 			// Updates the game
 			GameController.manualGameUpdate();

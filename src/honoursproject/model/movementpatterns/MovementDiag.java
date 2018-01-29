@@ -9,7 +9,7 @@ import honoursproject.util.CollisionDetector;
 import honoursproject.util.MovementNoiseApplier;
 
 public class MovementDiag implements Movable {
-	private int shootingType = 1;
+	private int shootingType = 0;
 	private double maxOffset = 5;
 	private double currentXOffset = 0;
 	private double currentYOffset = 0;
