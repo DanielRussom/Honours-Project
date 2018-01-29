@@ -137,6 +137,9 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			double maxV = Double.NEGATIVE_INFINITY;
 			for (int i = 0; i < 8; ++i) {
 				if (networkOutput[i] > maxV) {
+					// if (networkOutput[i] > 0.5) {
+					// System.out.println(networkOutput[i]);
+					// }
 					maxI = i;
 					maxV = networkOutput[i];
 				}
@@ -181,15 +184,22 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			default:
 				throw new RuntimeException("This shouldn't happen");
 			}
-			if(networkOutput[8] > 0.5) {
-				//System.out.println("WOAH");
+			
+			if (networkOutput[8] > 0.8) {
+				// TODO SHOOT
+			} else if (networkOutput[8] > 0.6) {
+				// TODO SHOOT
+			} else if (networkOutput[8] > 0.4) {
+				// TODO SHOOT
+			} else if (networkOutput[8] > 0.2) {
+				// TODO SHOOT
 			}
 			// Updates the game
 			GameController.manualGameUpdate();
 
 			// TODO Test fitness +=
 			// Calculates the current fitness
-			fitness = GameController.getCurrentPlayer().getHealth() + (currentTimestep/10);
+			fitness = GameController.getCurrentPlayer().getHealth() + (currentTimestep / 10);
 			// Stores the player's current position
 			String pos = GameController.getCurrentPlayer().getXPosition() + ":"
 					+ GameController.getCurrentPlayer().getYPosition();
