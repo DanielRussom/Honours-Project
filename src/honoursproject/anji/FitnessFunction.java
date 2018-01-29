@@ -135,7 +135,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			double[] networkOutput = activator.next(networkInput);
 			int maxI = -1;
 			double maxV = Double.NEGATIVE_INFINITY;
-			for (int i = 0; i < 4; ++i) {
+			for (int i = 0; i < 8; ++i) {
 				if (networkOutput[i] > maxV) {
 					maxI = i;
 					maxV = networkOutput[i];
@@ -143,23 +143,40 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			}
 			switch (maxI) {
 			case 0:
-				// Moves the player left
-				GameController.getCurrentPlayer().moveLeft();
-				break;
-			case 1:
-				// Moves the player right
-				GameController.getCurrentPlayer().moveRight();
-				break;
-			case 2:
 				// Moves the player up
 				GameController.getCurrentPlayer().moveUp();
 				break;
+			case 1:
+				// Moves the player up and left
+				GameController.getCurrentPlayer().moveUp();
+				GameController.getCurrentPlayer().moveLeft();
+				break;
+			case 2:
+				// Moves the player left
+				GameController.getCurrentPlayer().moveLeft();
+				break;
 			case 3:
+				// Moves the player down and left
+				GameController.getCurrentPlayer().moveDown();
+				GameController.getCurrentPlayer().moveLeft();
+				break;
+			case 4:
 				// Moves the player down
 				GameController.getCurrentPlayer().moveDown();
 				break;
-			case 4:
-				// No movement is performed
+			case 5:
+				// Moves the player down and right
+				GameController.getCurrentPlayer().moveDown();
+				GameController.getCurrentPlayer().moveRight();
+				break;
+			case 6:
+				// Moves the player right
+				GameController.getCurrentPlayer().moveRight();
+				break;
+			case 7:
+				// Moves the player up and right
+				GameController.getCurrentPlayer().moveUp();
+				GameController.getCurrentPlayer().moveRight();
 				break;
 			default:
 				throw new RuntimeException("This shouldn't happen");
