@@ -194,16 +194,20 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			}
 			switch (maxI) {
 			case 8:
-				// TODO Shoot
+				// Shoots upwards
+				GameController.getCurrentPlayer().shoot('U');
 				break;
 			case 9:
-				// TODO Shoot
+				// Shoots to the left
+				GameController.getCurrentPlayer().shoot('L');
 				break;
 			case 10:
-				// TODO Shoot
+				// Shoots down
+				GameController.getCurrentPlayer().shoot('D');
 				break;
 			case 11:
-				// TODO Shoot
+				// Shoots to the right
+				GameController.getCurrentPlayer().shoot('R');
 				break;
 			default:
 				throw new RuntimeException("This shouldn't happen");
