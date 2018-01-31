@@ -19,9 +19,9 @@ import com.anji.util.Properties;
 import com.anji.util.Randomizer;
 
 import honoursproject.GameController;
-import honoursproject.model.MovingElement;
 import honoursproject.model.Element;
 import honoursproject.model.Enemy;
+import honoursproject.model.MovingElement;
 import honoursproject.model.Player;
 import honoursproject.model.Projectile;
 
@@ -137,6 +137,9 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			double maxV = Double.NEGATIVE_INFINITY;
 			for (int i = 0; i < 8; ++i) {
 				if (networkOutput[i] > maxV) {
+					// if (networkOutput[i] > 0.5) {
+					// System.out.println(networkOutput[i]);
+					// }
 					maxI = i;
 					maxV = networkOutput[i];
 				}
@@ -181,12 +184,41 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			default:
 				throw new RuntimeException("This shouldn't happen");
 			}
+			maxI = -1;
+			maxV = Double.NEGATIVE_INFINITY;
+			for (int i = 8; i < 12; ++i) {
+				if (networkOutput[i] > maxV) {
+					maxI = i;
+					maxV = networkOutput[i];
+				}
+			}
+			switch (maxI) {
+			case 8:
+				// Shoots upwards
+				GameController.getCurrentPlayer().shoot('U');
+				break;
+			case 9:
+				// Shoots to the left
+				GameController.getCurrentPlayer().shoot('L');
+				break;
+			case 10:
+				// Shoots down
+				GameController.getCurrentPlayer().shoot('D');
+				break;
+			case 11:
+				// Shoots to the right
+				GameController.getCurrentPlayer().shoot('R');
+				break;
+			default:
+				throw new RuntimeException("This shouldn't happen");
+			}
+
 			// Updates the game
 			GameController.manualGameUpdate();
 
 			// TODO Test fitness +=
 			// Calculates the current fitness
-			fitness = GameController.getCurrentPlayer().getHealth() + currentTimestep;
+			fitness = GameController.getCurrentPlayer().getHealth() + (currentTimestep / 10);
 			// Stores the player's current position
 			String pos = GameController.getCurrentPlayer().getXPosition() + ":"
 					+ GameController.getCurrentPlayer().getYPosition();
@@ -204,6 +236,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 		}
 		logger.debug("Trial took " + currentTimestep + " steps");
 		return fitness;
+
 	}
 
 	/**
