@@ -184,16 +184,31 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			default:
 				throw new RuntimeException("This shouldn't happen");
 			}
-			
-			if (networkOutput[8] > 0.8) {
-				// TODO SHOOT
-			} else if (networkOutput[8] > 0.6) {
-				// TODO SHOOT
-			} else if (networkOutput[8] > 0.4) {
-				// TODO SHOOT
-			} else if (networkOutput[8] > 0.2) {
-				// TODO SHOOT
+			maxI = -1;
+			maxV = Double.NEGATIVE_INFINITY;
+			for (int i = 8; i < 12; ++i) {
+				if (networkOutput[i] > maxV) {
+					maxI = i;
+					maxV = networkOutput[i];
+				}
 			}
+			switch (maxI) {
+			case 8:
+				// TODO Shoot
+				break;
+			case 9:
+				// TODO Shoot
+				break;
+			case 10:
+				// TODO Shoot
+				break;
+			case 11:
+				// TODO Shoot
+				break;
+			default:
+				throw new RuntimeException("This shouldn't happen");
+			}
+
 			// Updates the game
 			GameController.manualGameUpdate();
 
@@ -217,6 +232,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 		}
 		logger.debug("Trial took " + currentTimestep + " steps");
 		return fitness;
+
 	}
 
 	/**
