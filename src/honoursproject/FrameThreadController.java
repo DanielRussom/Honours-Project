@@ -37,7 +37,7 @@ public class FrameThreadController extends AnimationTimer {
 				// Initializes container values
 				CollisionDetector.initContainerValues(GameController.getActiveElements().get(0));
 				// Clear the currently stored active elements
-				
+
 				for (int i = 0; i < GameController.getActiveElements().size(); i++) {
 					try {
 						GameController.resetState.add(GameController.getActiveElements().get(i).clone());
@@ -46,26 +46,31 @@ public class FrameThreadController extends AnimationTimer {
 						e.printStackTrace();
 					}
 				}
+				// TODO Remove items from UI
 				GameController.getActiveElements().clear();
 				System.out.println(GameController.getActiveElements() + "AAA" + GameController.resetState);
-				
-				/*// Load in new active elements from the saved reset state
+
+				// Load in new active elements from the saved reset state
 				for (int j = 0; j < GameController.resetState.size(); j++) {
 					try {
+
 						MovingElement newObject;
 
 						newObject = GameController.resetState.get(j).clone();
 
-						GameController.getActiveElements().add(newObject);
 						// Set the current player
 						if (newObject instanceof Player && !(newObject instanceof Enemy)) {
 							GameController.setCurrentPlayer((Player) newObject);
+						} else {
+							// Adds the new element to the active elements list
+							GameController.getActiveElements().add(newObject);
 						}
+
 					} catch (CloneNotSupportedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				}*/
+				}
 			}
 			return;
 		}

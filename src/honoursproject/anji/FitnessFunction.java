@@ -91,17 +91,25 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			int fitness = 0;
 			// Run multiple trials to calculate fitness
 			for (int i = 0; i < numTrials; i++) {
+				ArrayList<Element> test = GameController.getActiveElements();
 				// Clear the currently stored active elements
 				GameController.getActiveElements().clear();
 				// Load in new active elements from the saved reset state
 				for (int j = 0; j < GameController.resetState.size(); j++) {
 					MovingElement newObject = GameController.resetState.get(j).clone();
-					GameController.getActiveElements().add(newObject);
 					// Set the current player
-					if (newObject instanceof Player) {
+					if (newObject instanceof Player && !(newObject instanceof Enemy)) {
 						GameController.setCurrentPlayer((Player) newObject);
+					} else {
+						// Adds the new element to the active elements list
+						GameController.getActiveElements().add(newObject);
 					}
+					System.out.println(j);
+					System.out.println(GameController.getActiveElements());
 				}
+
+				System.out.println(GameController.getActiveElements());
+				System.out.println("1     ");
 				// Adds up fitness over multiple trials
 				fitness += singleTrial(activator);
 			}
