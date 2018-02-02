@@ -184,7 +184,6 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			default:
 				throw new RuntimeException("This shouldn't happen");
 			}
-			GameController.getCurrentPlayer().shoot('U');
 			System.out.println(GameController.getActiveElements());
 			System.out.println(" ");
 			/*maxI = -1;

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import honoursproject.anji.Evolver;
 import honoursproject.model.Element;
+import honoursproject.model.Enemy;
+import honoursproject.model.MovingElement;
+import honoursproject.model.Player;
 import honoursproject.util.CollisionDetector;
 import javafx.animation.AnimationTimer;
 
@@ -30,9 +33,39 @@ public class FrameThreadController extends AnimationTimer {
 			// Decrements the setup time
 			setupTime -= 1;
 			// Checks if the game is going to start next turn
-			if(setupTime == 0) {
+			if (setupTime == 0) {
 				// Initializes container values
 				CollisionDetector.initContainerValues(GameController.getActiveElements().get(0));
+				// Clear the currently stored active elements
+				
+				for (int i = 0; i < GameController.getActiveElements().size(); i++) {
+					try {
+						GameController.resetState.add(GameController.getActiveElements().get(i).clone());
+					} catch (CloneNotSupportedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				GameController.getActiveElements().clear();
+				System.out.println(GameController.getActiveElements() + "AAA" + GameController.resetState);
+				
+				/*// Load in new active elements from the saved reset state
+				for (int j = 0; j < GameController.resetState.size(); j++) {
+					try {
+						MovingElement newObject;
+
+						newObject = GameController.resetState.get(j).clone();
+
+						GameController.getActiveElements().add(newObject);
+						// Set the current player
+						if (newObject instanceof Player && !(newObject instanceof Enemy)) {
+							GameController.setCurrentPlayer((Player) newObject);
+						}
+					} catch (CloneNotSupportedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}*/
 			}
 			return;
 		}
