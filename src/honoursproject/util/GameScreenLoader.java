@@ -40,6 +40,7 @@ public class GameScreenLoader {
 				current.setVisible(!current.isVisible());
 				Main.getGameRootLayoutController().setLblPlayerHealthValue(player.getHealth());
 				GameController.setCurrentPlayer(player);
+				player.setPlayer1(true);
 				continue;
 			}
 			// Initialises the second player

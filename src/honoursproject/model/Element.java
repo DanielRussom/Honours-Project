@@ -9,11 +9,26 @@ public abstract class Element implements Cloneable {
 	protected double xPosition = 0;
 	protected double yPosition = 0;
 	protected Node image;
+	protected boolean isPlayer1 = false;
+
+	/**
+	 * @return the isPlayer1
+	 */
+	public boolean isPlayer1() {
+		return isPlayer1;
+	}
+
+	/**
+	 * @param isPlayer1 the isPlayer1 to set
+	 */
+	public void setPlayer1(boolean isPlayer1) {
+		this.isPlayer1 = isPlayer1;
+	}
 
 	// INCASE
 	@Override
-	public MovingElement clone() throws CloneNotSupportedException {
-		return (MovingElement) super.clone();
+	public Element clone() throws CloneNotSupportedException {
+		return (Element) super.clone();
 	}
 
 	public Element() {

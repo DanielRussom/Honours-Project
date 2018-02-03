@@ -96,7 +96,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 				GameController.getActiveElements().clear();
 				// Load in new active elements from the saved reset state
 				for (int j = 0; j < GameController.resetState.size(); j++) {
-					MovingElement newObject = GameController.resetState.get(j).clone();
+					Element newObject = GameController.resetState.get(j).clone();
 					// Set the current player
 					if (newObject instanceof Player && !(newObject instanceof Enemy)) {
 						GameController.setCurrentPlayer((Player) newObject);
