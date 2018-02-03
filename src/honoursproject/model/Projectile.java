@@ -97,7 +97,7 @@ public class Projectile extends MovingElement {
 			if (getXPosition() >= current.getRightSide() || getRightSide() <= current.getXPosition()) {
 			} else if (getYPosition() >= current.getBottomSide() || getBottomSide() <= current.getYPosition()) {
 			} else {
-				handleBeingHit((MovingElement) current);
+				handleBeingHit((Element) current);
 				current.handleBeingHit(this);
 			}
 		}
