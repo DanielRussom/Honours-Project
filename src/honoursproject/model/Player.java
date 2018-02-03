@@ -135,14 +135,14 @@ public class Player extends MovingElement{
 		 * Moves down for a single turn
 		 */
 		public void moveDown() {
-			singleTurnYVel -= moveSpeed;
+			singleTurnYVel += moveSpeed;
 		}
 
 		/**
 		 * Moves up for a single turn
 		 */
 		public void moveUp() {
-			singleTurnYVel += moveSpeed;
+			singleTurnYVel -= moveSpeed;
 		}
 	
 	public Point checkCollision(Point newPosition) {

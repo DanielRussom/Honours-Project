@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 import org.jgap.BulkFitnessFunction;
@@ -21,7 +22,6 @@ import com.anji.util.Randomizer;
 import honoursproject.GameController;
 import honoursproject.model.Element;
 import honoursproject.model.Enemy;
-import honoursproject.model.MovingElement;
 import honoursproject.model.Player;
 import honoursproject.model.Projectile;
 
@@ -104,12 +104,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 						// Adds the new element to the active elements list
 						GameController.getActiveElements().add(newObject);
 					}
-					System.out.println(j);
-					System.out.println(GameController.getActiveElements());
 				}
-
-				System.out.println(GameController.getActiveElements());
-				System.out.println("1     ");
 				// Adds up fitness over multiple trials
 				fitness += singleTrial(activator);
 			}
@@ -155,7 +150,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			switch (maxI) {
 			case 0:
 				// Moves the player up
-				GameController.getCurrentPlayer().moveUp();
+				//GameController.getCurrentPlayer().moveUp();
 				break;
 			case 1:
 				// Moves the player up and left
@@ -192,36 +187,23 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			default:
 				throw new RuntimeException("This shouldn't happen");
 			}
-			System.out.println(GameController.getActiveElements());
-			System.out.println(" ");
-			/*maxI = -1;
-			maxV = Double.NEGATIVE_INFINITY;
-			for (int i = 8; i < 12; ++i) {
-				if (networkOutput[i] > maxV) {
-					maxI = i;
-					maxV = networkOutput[i];
-				}
+			if (true) {
+				System.out.println(GameController.getCurrentPlayer().getXPosition() + ":"
+						+ GameController.getCurrentPlayer().getYPosition());
+				System.out.println(maxI);
+				Scanner scan = new Scanner(System.in);
+				scan.nextLine();
 			}
-			switch (maxI) {
-			case 8:
-				// Shoots upwards
-				GameController.getCurrentPlayer().shoot('U');
-				break;
-			case 9:
-				// Shoots to the left
-				GameController.getCurrentPlayer().shoot('L');
-				break;
-			case 10:
-				// Shoots down
-				GameController.getCurrentPlayer().shoot('D');
-				break;
-			case 11:
-				// Shoots to the right
-				GameController.getCurrentPlayer().shoot('R');
-				break;
-			default:
-				throw new RuntimeException("This shouldn't happen");
-			}*/
+			/*
+			 * maxI = -1; maxV = Double.NEGATIVE_INFINITY; for (int i = 8; i < 12; ++i) { if
+			 * (networkOutput[i] > maxV) { maxI = i; maxV = networkOutput[i]; } } switch
+			 * (maxI) { case 8: // Shoots upwards
+			 * GameController.getCurrentPlayer().shoot('U'); break; case 9: // Shoots to the
+			 * left GameController.getCurrentPlayer().shoot('L'); break; case 10: // Shoots
+			 * down GameController.getCurrentPlayer().shoot('D'); break; case 11: // Shoots
+			 * to the right GameController.getCurrentPlayer().shoot('R'); break; default:
+			 * throw new RuntimeException("This shouldn't happen"); }
+			 */
 
 			// Updates the game
 			GameController.manualGameUpdate();
