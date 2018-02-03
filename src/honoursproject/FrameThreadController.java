@@ -36,39 +36,40 @@ public class FrameThreadController extends AnimationTimer {
 			if (setupTime == 0) {
 				// Initializes container values
 				CollisionDetector.initContainerValues(GameController.getActiveElements().get(0));
-				// Clear the currently stored active elements
-
-				for (int i = 0; i < GameController.getActiveElements().size(); i++) {
-					try {
-						GameController.resetState.add(GameController.getActiveElements().get(i).clone());
-					} catch (CloneNotSupportedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				// TODO Remove items from UI
-				GameController.getActiveElements().clear();
-				System.out.println(GameController.getActiveElements() + "AAA" + GameController.resetState);
-
-				// Load in new active elements from the saved reset state
-				for (int j = 0; j < GameController.resetState.size(); j++) {
-					try {
-
-						MovingElement newObject;
-
-						newObject = GameController.resetState.get(j).clone();
-
-						// Set the current player
-						if (newObject instanceof Player && !(newObject instanceof Enemy)) {
-							GameController.setCurrentPlayer((Player) newObject);
-						} else {
-							// Adds the new element to the active elements list
-							GameController.getActiveElements().add(newObject);
+				if (triggerEvolver) {
+					for (int i = 0; i < GameController.getActiveElements().size(); i++) {
+						try {
+							GameController.resetState.add(GameController.getActiveElements().get(i).clone());
+						} catch (CloneNotSupportedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
+					}
 
-					} catch (CloneNotSupportedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					// TODO Remove items from UI
+					// Clear the currently stored active elements
+					GameController.getActiveElements().clear();
+
+					// Load in new active elements from the saved reset state
+					for (int j = 0; j < GameController.resetState.size(); j++) {
+						try {
+
+							Element newObject;
+
+							newObject = GameController.resetState.get(j).clone();
+
+							// Set the current player
+							if (newObject.isPlayer1()) {
+								GameController.setCurrentPlayer((Player) newObject);
+							} else {
+								// Adds the new element to the active elements list
+								GameController.getActiveElements().add(newObject);
+							}
+
+						} catch (CloneNotSupportedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 			}
