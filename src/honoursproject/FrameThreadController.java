@@ -77,10 +77,6 @@ public class FrameThreadController extends AnimationTimer {
 		// Checks if the evolver should be started
 		if (triggerEvolver) {
 			try {
-				// Stores the initial elements as the reset state
-				for (int i = 0; i < GameController.getActiveElements().size(); i++) {
-					GameController.resetState.add(GameController.getActiveElements().get(i).clone());
-				}
 				// Calls a method to setup the evolver
 				Evolver.setup();
 			} catch (Exception e) {
