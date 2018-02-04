@@ -25,6 +25,10 @@ import honoursproject.model.Player;
 import honoursproject.model.Projectile;
 
 public class FitnessFunction implements BulkFitnessFunction, Configurable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1393904614081000622L;
 	private final static String TIMESTEPS_KEY = "honours.timesteps";
 	private final static String NUM_TRIALS_KEY = "honours.trials";
 
@@ -186,31 +190,18 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 				throw new RuntimeException("This shouldn't happen");
 			}
 
-			maxI = -1;
-			maxV = Double.NEGATIVE_INFINITY;
-			/*for (int i = 8; i < 12; ++i) {
-				if (networkOutput[i] > maxV) {
-					maxI = i;
-					maxV = networkOutput[i];
-				}
-			}
-
-			switch (maxI) {
-			case 8: // Shoots upwards
-				GameController.getCurrentPlayer().shoot('U');
-				break;
-			case 9: // Shoots to the left
-				GameController.getCurrentPlayer().shoot('L');
-				break;
-			case 10: // Shoots down
-				GameController.getCurrentPlayer().shoot('D');
-				break;
-			case 11: // Shoots to the right
-				GameController.getCurrentPlayer().shoot('R');
-				break;
-			default:
-				throw new RuntimeException("This shouldn't happen");
-			}*/
+			// TODO Uncomment below when shooting is needed
+			/*
+			 * maxI = -1; maxV = Double.NEGATIVE_INFINITY; for (int i = 8; i < 12; ++i) { if
+			 * (networkOutput[i] > maxV) { maxI = i; maxV = networkOutput[i]; } }
+			 * 
+			 * switch (maxI) { case 8: // Shoots upwards
+			 * GameController.getCurrentPlayer().shoot('U'); break; case 9: // Shoots to the
+			 * left GameController.getCurrentPlayer().shoot('L'); break; case 10: // Shoots
+			 * down GameController.getCurrentPlayer().shoot('D'); break; case 11: // Shoots
+			 * to the right GameController.getCurrentPlayer().shoot('R'); break; default:
+			 * throw new RuntimeException("This shouldn't happen"); }
+			 */
 
 			// Updates the game
 			GameController.manualGameUpdate();
@@ -267,22 +258,31 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 				}
 			}
 		}
-		// TODO Tidy
-		// Stories enemy variables for each enemy
+
+		// Stores enemy variables for each enemy
 		int sizePerEnemy = 3;
 		for (int i = 0; i < enemies.size(); i++) {
-			input[(i + 1) * sizePerEnemy] = enemies.get(i).getXPosition();
-			input[((i + 1) * sizePerEnemy) + 1] = enemies.get(i).getYPosition();
-			input[((i + 1) * sizePerEnemy) + 2] = ((Enemy) enemies.get(i)).getHealth();
+			// Gets initial storing point for this enemy
+			int value = 3 + (i) * sizePerEnemy;
+			// Stores the x and y coordinates of this enemy
+			input[value] = enemies.get(i).getXPosition();
+			input[value + 1] = enemies.get(i).getYPosition();
+			// Stores this enemy's health
+			input[value + 2] = ((Enemy) enemies.get(i)).getHealth();
 		}
 		// Stores projectile variables for each projectile
 		int sizePerProjectile = 4;
+		// Gets the initial storing point for projectiles
 		int offset = (enemies.size() * 3) + 3;
 		for (int i = 0; i < projectiles.size(); i++) {
-			input[offset + (i * sizePerProjectile)] = projectiles.get(i).getXPosition();
-			input[offset + (i * sizePerProjectile) + 1] = projectiles.get(i).getYPosition();
-			input[offset + (i * sizePerProjectile) + 2] = projectiles.get(i).getXVel();
-			input[offset + (i * sizePerProjectile) + 3] = projectiles.get(i).getYVel();
+			// Gets the initial storing point for this projectile
+			int value = offset + (i * sizePerProjectile);
+			// Stores the x and y coordinates of this projectile
+			input[value] = projectiles.get(i).getXPosition();
+			input[value + 1] = projectiles.get(i).getYPosition();
+			// Stores the x and y velocities of this projectile
+			input[value + 2] = projectiles.get(i).getXVel();
+			input[value + 3] = projectiles.get(i).getYVel();
 
 		}
 		return input;
