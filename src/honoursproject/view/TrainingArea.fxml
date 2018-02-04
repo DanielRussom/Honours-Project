@@ -6,7 +6,7 @@
 
 <AnchorPane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="575.0" styleClass="background" stylesheets="@test.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="honoursproject.view.GameScreenController">
    <children>
-      <ImageView id="player" fitHeight="50.0" fitWidth="50.0" layoutX="171.0" layoutY="237.0" pickOnBounds="true">
+      <ImageView id="player" fitHeight="50.0" fitWidth="50.0" layoutX="437.0" layoutY="175.0" pickOnBounds="true">
          <image>
             <Image url="@../PlayerPH.png" />
          </image>

@@ -188,7 +188,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 
 			maxI = -1;
 			maxV = Double.NEGATIVE_INFINITY;
-			for (int i = 8; i < 12; ++i) {
+			/*for (int i = 8; i < 12; ++i) {
 				if (networkOutput[i] > maxV) {
 					maxI = i;
 					maxV = networkOutput[i];
@@ -210,7 +210,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 				break;
 			default:
 				throw new RuntimeException("This shouldn't happen");
-			}
+			}*/
 
 			// Updates the game
 			GameController.manualGameUpdate();
