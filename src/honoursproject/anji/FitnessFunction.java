@@ -191,17 +191,31 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			}
 
 			// TODO Uncomment below when shooting is needed
-			/*
-			 * maxI = -1; maxV = Double.NEGATIVE_INFINITY; for (int i = 8; i < 12; ++i) { if
-			 * (networkOutput[i] > maxV) { maxI = i; maxV = networkOutput[i]; } }
-			 * 
-			 * switch (maxI) { case 8: // Shoots upwards
-			 * GameController.getCurrentPlayer().shoot('U'); break; case 9: // Shoots to the
-			 * left GameController.getCurrentPlayer().shoot('L'); break; case 10: // Shoots
-			 * down GameController.getCurrentPlayer().shoot('D'); break; case 11: // Shoots
-			 * to the right GameController.getCurrentPlayer().shoot('R'); break; default:
-			 * throw new RuntimeException("This shouldn't happen"); }
-			 */
+			maxI = -1;
+			maxV = Double.NEGATIVE_INFINITY;
+			for (int i = 8; i < 12; ++i) {
+				if (networkOutput[i] > maxV) {
+					maxI = i;
+					maxV = networkOutput[i];
+				}
+			}
+
+			switch (maxI) {
+			case 8: // Shoots upwards
+				GameController.getCurrentPlayer().shoot('U');
+				break;
+			case 9: // Shoots to the left
+				GameController.getCurrentPlayer().shoot('L');
+				break;
+			case 10: // Shoots down
+				GameController.getCurrentPlayer().shoot('D');
+				break;
+			case 11: // Shoots to the right
+				GameController.getCurrentPlayer().shoot('R');
+				break;
+			default:
+				throw new RuntimeException("This shouldn't happen");
+			}
 
 			// Updates the game
 			GameController.manualGameUpdate();
