@@ -34,7 +34,7 @@ speciation.threshold=0.2
 # fitness function
 ##################
 stimulus.size=100
-response.size=9
+response.size=12
 fitness_function.class=honoursproject.anji.FitnessFunction
 fitness.function.adjust.for.network.size.factor=1
 fitness.threshold=0.95
