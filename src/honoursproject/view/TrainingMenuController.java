@@ -6,6 +6,12 @@ import javafx.fxml.FXML;
 public class TrainingMenuController {
 
 	@FXML
+	public void playTrainingArea1() throws Throwable {
+		Main.showGameRoot();
+		Main.showTrainingArea1();
+	}
+	
+	@FXML
 	public void playTrainingArea2() throws Throwable {
 		Main.showGameRoot();
 		Main.showTrainingArea2();

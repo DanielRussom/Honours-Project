@@ -137,7 +137,7 @@ public class Main extends Application {
 			gameRootLayoutController.setGameScreen(gameScreen);
 			// Initializes the game elements from the passed in pane
 			GameScreenLoader.initGameElements(gameScreen);
-			//GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
+			// GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
 			// Begins the FrameThreadController
 			setFrameThreadController(new FrameThreadController());
 			getFrameThreadController().start();
@@ -160,8 +160,8 @@ public class Main extends Application {
 			gameRootLayoutController.setGameScreen(gameScreen);
 			// Initializes the game elements from the passed in pane
 			GameScreenLoader.initGameElements(gameScreen);
-			//GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
-			//GameController.setCurrentPlayer2(GameScreenLoader.getPlayer2());
+			// GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
+			// GameController.setCurrentPlayer2(GameScreenLoader.getPlayer2());
 			// Begins the FrameThreadController
 			setFrameThreadController(new FrameThreadController());
 			getFrameThreadController().start();
@@ -172,6 +172,32 @@ public class Main extends Application {
 
 	/**
 	 * Displays the second training area.
+	 * 
+	 * @throws Throwable
+	 */
+	public static void showTrainingArea1() throws Throwable {
+		try {
+			GameController.clearActiveElements();
+			// Load the training area from FXML file
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/TrainingArea.fxml"));
+			AnchorPane trainingArea = (AnchorPane) loader.load();
+			gameScreenController = (GameScreenController) loader.getController();
+			// Displays the game screen into the center of game root layout
+			gameRootLayoutController.setGameScreen(trainingArea);
+			// Initializes the game elements from the passed in pane
+			GameScreenLoader.initGameElements(trainingArea);
+			// GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
+			// Begins the FrameThreadController
+			setFrameThreadController(new FrameThreadController());
+			getFrameThreadController().start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Displays the third training area.
 	 * 
 	 * @throws Throwable
 	 */
@@ -187,15 +213,16 @@ public class Main extends Application {
 			gameRootLayoutController.setGameScreen(trainingArea);
 			// Initializes the game elements from the passed in pane
 			GameScreenLoader.initGameElements(trainingArea);
-			//GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
+			// GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
 			// Begins the FrameThreadController
 			setFrameThreadController(new FrameThreadController());
 			getFrameThreadController().start();
+			getFrameThreadController().triggerEvolver = true;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Displays the third training area.
 	 * 
@@ -203,6 +230,7 @@ public class Main extends Application {
 	 */
 	public static void showTrainingArea3() throws Throwable {
 		try {
+			//TODO
 			GameController.clearActiveElements();
 			// Load the training area from FXML file
 			FXMLLoader loader = new FXMLLoader();
@@ -213,11 +241,13 @@ public class Main extends Application {
 			gameRootLayoutController.setGameScreen(trainingArea);
 			// Initializes the game elements from the passed in pane
 			GameScreenLoader.initGameElements(trainingArea);
-			//GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
+			// GameController.setCurrentPlayer(GameScreenLoader.getPlayer());
 			// Begins the FrameThreadController
-			setFrameThreadController(new FrameThreadController());
-			getFrameThreadController().start();
-			getFrameThreadController().triggerEvolver = true;
+			/*
+			 * setFrameThreadController(new FrameThreadController());
+			 * getFrameThreadController().start(); getFrameThreadController().triggerEvolver
+			 * = true;
+			 */
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -220,9 +220,10 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 			// Updates the game
 			GameController.manualGameUpdate();
 
-			// TODO Test fitness +=
+			// TODO Add enemy factors to fitness
 			// Calculates the current fitness
 			fitness = GameController.getCurrentPlayer().getHealth() + (currentTimestep / 10);
+			
 			// Stores the player's current position
 			String pos = GameController.getCurrentPlayer().getXPosition() + ":"
 					+ GameController.getCurrentPlayer().getYPosition();
