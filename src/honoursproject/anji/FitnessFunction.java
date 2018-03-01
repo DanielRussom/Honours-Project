@@ -217,6 +217,7 @@ public class FitnessFunction implements BulkFitnessFunction, Configurable {
 				throw new RuntimeException("This shouldn't happen");
 			}
 
+			//damagedone/damagerecieved (double if no recieved)
 			// Updates the game
 			GameController.manualGameUpdate();
 

@@ -5,9 +5,9 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="honoursproject.view.TrainingMenuController">
    <children>
-      <Button layoutX="240.0" layoutY="139.0" mnemonicParsing="false" onAction="#playTrainingArea1" text="Training Type PH" />
-      <Button layoutX="237.0" layoutY="175.0" mnemonicParsing="false" onAction="#playTrainingArea2" text="Training Type PH2" />
-      <Button layoutX="237.0" layoutY="209.0" mnemonicParsing="false" onAction="#playTrainingArea3" text="Training Type PH3" />
+      <Button layoutX="262.0" layoutY="124.0" mnemonicParsing="false" onAction="#playTrainingArea1" text="Test Area" />
+      <Button layoutX="231.0" layoutY="160.0" mnemonicParsing="false" onAction="#playTrainingArea2" text="Movement Evolution" />
+      <Button layoutX="238.0" layoutY="200.0" mnemonicParsing="false" onAction="#playTrainingArea3" text="Shooting Evolution" />
       <Button layoutX="274.0" layoutY="274.0" mnemonicParsing="false" onAction="#showMainMenu" text="Back" />
    </children>
 </AnchorPane>

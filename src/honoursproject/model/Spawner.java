@@ -11,7 +11,7 @@ public class Spawner extends MovingElement {
 		tempImage.setFitHeight(50);
 		tempImage.setFitWidth(50);
 		this.image = tempImage;
-		damage = 5;
+		damage = 0;
 
 	}
 
