@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import honoursproject.model.Element;
 import honoursproject.model.Player;
+import honoursproject.model.Spawner;
 
 public class GameController {
 	private static ArrayList<Element> activeElements = new ArrayList<Element>();
 	private static ArrayList<Element> elementsToRemove = new ArrayList<Element>();
+	public static ArrayList<Spawner> enemySpawnPoints = new ArrayList<Spawner>();
 	private static Player currentPlayer;
 	private static Player currentPlayer2;
 	public static ArrayList<Element> resetState = new ArrayList<Element>();

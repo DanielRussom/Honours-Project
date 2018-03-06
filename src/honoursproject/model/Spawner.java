@@ -15,8 +15,13 @@ public class Spawner extends Element {
 
 	@Override
 	public void move() {
-		// TODO Auto-generated method stub
-		
+				
 	}
 
+	/**
+	 * Handles spawning an enemy at this spawner's location
+	 */
+	public void spawnEnemy() {
+		System.out.println("An enemy should be spawned!");
+	}
 }
