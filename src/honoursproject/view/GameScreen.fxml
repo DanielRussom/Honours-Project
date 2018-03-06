@@ -46,11 +46,6 @@
             <Image url="@../Wall.png" />
          </image>
       </ImageView>
-      <ImageView id="wall" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="200.0" pickOnBounds="true">
-         <image>
-            <Image url="@../Wall.png" />
-         </image>
-      </ImageView>
       <ImageView id="wall" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="250.0" pickOnBounds="true">
          <image>
             <Image url="@../Wall.png" />
@@ -74,6 +69,11 @@
       <ImageView id="wall" fitHeight="50.0" fitWidth="50.0" layoutX="100.0" layoutY="300.0" pickOnBounds="true">
          <image>
             <Image url="@../Wall.png" />
+         </image>
+      </ImageView>
+      <ImageView id="spawner" fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="200.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Player2PH.png" />
          </image>
       </ImageView>
    </children>
