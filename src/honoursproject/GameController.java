@@ -60,7 +60,7 @@ public class GameController {
 	 * Adds the passed in element to the activeElements ArrayList.
 	 * 
 	 * @param element
-	 *            Element to be added to activeElements
+	 *            - Element to be added to activeElements
 	 */
 	public static void addActiveElement(Element element) {
 		getActiveElements().add(element);
@@ -71,6 +71,17 @@ public class GameController {
 	 */
 	public static void clearActiveElements() {
 		getActiveElements().clear();
+	}
+
+	/**
+	 * Adds the passed in spawner to the enemySpawnPoints ArrayList.
+	 * 
+	 * @param spawner
+	 *            - Spawner to be added to enemySpawnPoints
+	 */
+	public static void addSpawner(Spawner spawner) {
+		enemySpawnPoints.add(spawner);
+		System.out.println("Added!");
 	}
 
 	/**

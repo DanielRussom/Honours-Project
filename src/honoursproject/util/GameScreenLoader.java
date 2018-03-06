@@ -7,6 +7,7 @@ import honoursproject.GameController;
 import honoursproject.Main;
 import honoursproject.model.Enemy;
 import honoursproject.model.Player;
+import honoursproject.model.Spawner;
 import honoursproject.model.Wall;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -73,6 +74,14 @@ public class GameScreenLoader {
 				nodesToAdd.add(wall.getImage());
 				current.setVisible(false);
 				GameController.addActiveElement(wall);
+			}
+			if(current.getId().equals("spawner")) {
+				Spawner spawner = new Spawner();
+				spawner.setXPosition(current.getLayoutX());
+				spawner.setYPosition(current.getLayoutY());
+				spawner.moveTo(new Point((int) spawner.getXPosition(), (int) spawner.getYPosition()));
+				GameController.addSpawner(spawner);
+				current.setVisible(false);
 			}
 		}
 		Main.getGameScreenController().addNode(nodesToAdd);
