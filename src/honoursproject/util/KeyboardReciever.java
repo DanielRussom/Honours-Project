@@ -88,6 +88,8 @@ public class KeyboardReciever {
 			if (currentPlayer2 != null) {
 				currentPlayer2.shoot('R');
 			}
+		} else if(key.getCode()==KeyCode.V) {
+			GameController.spawnEnemy();
 		}
 	}
 

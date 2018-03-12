@@ -1,6 +1,7 @@
 package honoursproject;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import honoursproject.model.Element;
 import honoursproject.model.Player;
@@ -88,13 +89,20 @@ public class GameController {
 	 * Spawns an enemy at a random valid spawn point
 	 */
 	public static void spawnEnemy() {
+		System.out.println("Triggered");
 		ArrayList<Spawner> validSpawnPoints = new ArrayList<Spawner>();
 		for(Spawner currentSpawn: enemySpawnPoints) {
 			for(Element currentElement : activeElements) {
-				
+				if(!currentSpawn.collidesWith(currentElement)) {
+					validSpawnPoints.add(currentSpawn);
+				}
 			}
-			//TODO Check if space is clears
+			//TODO Weighted Spawn Points
 		}
+		//TODO Tidy
+		Random rand = new Random();
+		int test = rand.nextInt(validSpawnPoints.size());
+		validSpawnPoints.get(test).spawnEnemy();
 		
 	}
 	

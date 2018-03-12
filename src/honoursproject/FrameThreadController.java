@@ -28,6 +28,7 @@ public class FrameThreadController extends AnimationTimer {
 				return;
 			}
 		}
+		//TODO Tidy evolver stuff
 		// Checks if the game is ready to start
 		if (setupTime > 0) {
 			// Decrements the setup time
@@ -94,7 +95,6 @@ public class FrameThreadController extends AnimationTimer {
 		for (Element current : activeElements) {
 			// Skips the current element if it is flagged to be removed
 			if (GameController.getElementsToRemove().contains(current)) {
-				System.out.println("SKIPPED " + current.toString());
 				continue;
 			}
 			// Performs the current element's move

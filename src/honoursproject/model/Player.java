@@ -241,6 +241,8 @@ public class Player extends MovingElement {
 	}
 
 	/**
+	 * Gets this element's move behaviour
+	 * 
 	 * @return the moveBehaviour
 	 */
 	public Movable getMoveBehaviour() {
@@ -248,6 +250,8 @@ public class Player extends MovingElement {
 	}
 
 	/**
+	 * Sets this element's move behaviour
+	 * 
 	 * @param moveBehaviour
 	 *            the moveBehaviour to set
 	 */
@@ -256,11 +260,23 @@ public class Player extends MovingElement {
 		moveBehaviour.moveSetUp(this);
 	}
 
+	/**
+	 * Adds the passed in value to the single turn X velocity
+	 * 
+	 * @param xVelIncrease
+	 *            - the amount to increase by
+	 */
 	public void addSingleTurnXVel(double xVelIncrease) {
 		singleTurnXVel += xVelIncrease;
 
 	}
 
+	/**
+	 * Adds the passed in value to the single turn Y velocity
+	 * 
+	 * @param yVelIncrease
+	 *            - the amount to increase by
+	 */
 	public void addSingleTurnYVel(int yVelIncrease) {
 		singleTurnYVel += yVelIncrease;
 	}
