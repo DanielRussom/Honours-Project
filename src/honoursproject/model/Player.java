@@ -155,9 +155,8 @@ public class Player extends MovingElement{
 			if (current instanceof Projectile && ((Projectile) current).shooter.equals(this)) {
 				continue;
 			}
-			if (getXPosition() >= current.getRightSide() || getRightSide() <= current.getXPosition()) {
-			} else if (getYPosition() >= current.getBottomSide() || getBottomSide() <= current.getYPosition()) {
-			} else {
+			//Checks for collision
+			if(collidesWith(current)) {
 				if (current instanceof Projectile) {
 					handleBeingHit((MovingElement) current);
 					current.handleBeingHit(this);

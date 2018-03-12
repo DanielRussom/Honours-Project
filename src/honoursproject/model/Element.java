@@ -19,7 +19,8 @@ public abstract class Element implements Cloneable {
 	}
 
 	/**
-	 * @param isPlayer1 the isPlayer1 to set
+	 * @param isPlayer1
+	 *            the isPlayer1 to set
 	 */
 	public void setPlayer1(boolean isPlayer1) {
 		this.isPlayer1 = isPlayer1;
@@ -40,16 +41,18 @@ public abstract class Element implements Cloneable {
 		setXPosition(image.getLayoutX() + image.getTranslateX());
 		setYPosition(image.getLayoutY() + image.getTranslateY());
 	}
-	
+
 	/**
 	 * Handles receiving a hit
-	 * @param hitter - The element hitting this element
+	 * 
+	 * @param hitter
+	 *            - The element hitting this element
 	 */
 	public void handleBeingHit(Element hitter) {
 		System.out.println("Default hit! - This should be overridden!");
 		System.out.println(this.toString() + " was hit by " + hitter.toString());
 	}
-	
+
 	/**
 	 * Handles this element's movement for the next frame
 	 */
@@ -139,7 +142,7 @@ public abstract class Element implements Cloneable {
 	public void setYPosition(double yPosition) {
 		this.yPosition = yPosition;
 	}
-	
+
 	/**
 	 * Returns the x coordinate of element's right side.
 	 * 
@@ -180,5 +183,21 @@ public abstract class Element implements Cloneable {
 	 */
 	public double getBottomSide(Point location) {
 		return location.getY() + image.getLayoutBounds().getHeight();
+	}
+
+	/**
+	 * Checks for collision between this element and the passed in element
+	 * 
+	 * @param element
+	 *            - passed in element to check for collision against
+	 * @return - if collision is occurring
+	 */
+	public boolean collidesWith(Element element) {
+		if (getXPosition() >= element.getRightSide() || getRightSide() <= element.getXPosition()) {
+			return false;
+		} else if (getYPosition() >= element.getBottomSide() || getBottomSide() <= element.getYPosition()) {
+			return false;
+		}
+		return true;
 	}
 }
