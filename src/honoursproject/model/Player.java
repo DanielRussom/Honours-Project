@@ -8,7 +8,7 @@ import honoursproject.util.CollisionDetector;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Player extends MovingElement{
+public class Player extends MovingElement {
 
 	protected int health = 100;
 	protected int meleeDamage = 2;
@@ -66,86 +66,94 @@ public class Player extends MovingElement{
 
 		// Reduce diagonal speed
 		if (updatedXVel != 0 && updatedYVel != 0) {
-			updatedXVel = updatedXVel*0.60;
-			updatedYVel = updatedYVel*0.60;
-			
-			
-			//updatedXVel = updatedXVel / 2;
-			//updatedYVel = updatedYVel / 2;
+			updatedXVel = updatedXVel * 0.60;
+			updatedYVel = updatedYVel * 0.60;
 		}
 
+		// Stores x velocity decimal points separately
 		xVelDecimal += updatedXVel % 1;
-		//System.out.println(updatedXVel%1 + " " + xVelDecimal + " " + updatedXVel);
-		if(xVelDecimal>=1||xVelDecimal<=-1) {
-			int wholeNumber = (int) (xVelDecimal-(xVelDecimal%1));
-			xVelDecimal-=wholeNumber;
-			updatedXVel+=wholeNumber;
+		// Checks if the decimal values have reached a whole number
+		if (xVelDecimal >= 1 || xVelDecimal <= -1) {
+			int wholeNumber = (int) (xVelDecimal - (xVelDecimal % 1));
+			xVelDecimal -= wholeNumber;
+			updatedXVel += wholeNumber;
 		}
-		if(updatedXVel < 0) {
+		// Removes any decimal points from the xVel
+		if (updatedXVel < 0) {
 			updatedXVel = Math.ceil(updatedXVel);
 		} else if (updatedXVel > 0) {
 			updatedXVel = Math.floor(updatedXVel);
 		}
+
+		// Stores x velocity decimal points separately
 		yVelDecimal += updatedYVel % 1;
-//		System.out.println(updatedXVel%1 + " " + xVelDecimal + " " + updatedXVel);
-		if(yVelDecimal>=1||yVelDecimal<=-1) {
-			int wholeNumber = (int) (yVelDecimal-(yVelDecimal%1));
-			yVelDecimal-=wholeNumber;
-			updatedYVel+=wholeNumber;
+		// Checks if the decimal values have reached a whole number
+		if (yVelDecimal >= 1 || yVelDecimal <= -1) {
+			int wholeNumber = (int) (yVelDecimal - (yVelDecimal % 1));
+			yVelDecimal -= wholeNumber;
+			updatedYVel += wholeNumber;
 		}
-		if(updatedYVel < 0) {
+		// Removes any decimal points from the yVel
+		if (updatedYVel < 0) {
 			updatedYVel = Math.ceil(updatedYVel);
 		} else if (updatedYVel > 0) {
 			updatedYVel = Math.floor(updatedYVel);
 		}
-		//System.out.println(updatedXVel);
 		setXPosition(getXPosition() + updatedXVel);
 		setYPosition(getYPosition() + updatedYVel);
-		
+
 		Point newPosition = new Point((int) getXPosition(), (int) getYPosition());
 		newPosition = checkCollision(newPosition);
-		
+
 		setXPosition(newPosition.getX());
 		setYPosition(newPosition.getY());
 		updatePosition();
 	}
 
-		/**
-		 * Moves left for a single turn
-		 */
-		public void moveLeft() {
-			singleTurnXVel -= moveSpeed;
-		}
+	/**
+	 * Moves left for a single turn
+	 */
+	public void moveLeft() {
+		singleTurnXVel -= moveSpeed;
+	}
 
-		/**
-		 * Moves right for a single turn
-		 */
-		public void moveRight() {
-			singleTurnXVel += moveSpeed;
-		}
+	/**
+	 * Moves right for a single turn
+	 */
+	public void moveRight() {
+		singleTurnXVel += moveSpeed;
+	}
 
-		/**
-		 * @return the health
-		 */
-		public int getHealth() {
-			return health;
-		}
+	/**
+	 * @return the health
+	 */
+	public int getHealth() {
+		return health;
+	}
 
-		/**
-		 * Moves down for a single turn
-		 */
-		public void moveDown() {
-			singleTurnYVel += moveSpeed;
-		}
+	/**
+	 * Moves down for a single turn
+	 */
+	public void moveDown() {
+		singleTurnYVel += moveSpeed;
+	}
 
-		/**
-		 * Moves up for a single turn
-		 */
-		public void moveUp() {
-			singleTurnYVel -= moveSpeed;
-		}
-	
+	/**
+	 * Moves up for a single turn
+	 */
+	public void moveUp() {
+		singleTurnYVel -= moveSpeed;
+	}
+
+	/**
+	 * Handles checking and avoiding collision
+	 * 
+	 * @param newPosition
+	 *            - Position of this element where collision will be checked
+	 * @return - Updated point with collision handling
+	 */
 	public Point checkCollision(Point newPosition) {
+		// Handles collision with the game boundaries
 		CollisionDetector.handleBoundaryCollision(this);
 		Point test = new Point((int) getXPosition(), (int) getYPosition());
 		for (Element current : GameController.getActiveElements()) {
@@ -155,8 +163,8 @@ public class Player extends MovingElement{
 			if (current instanceof Projectile && ((Projectile) current).shooter.equals(this)) {
 				continue;
 			}
-			//Checks for collision
-			if(collidesWith(current)) {
+			// Checks for collision
+			if (collidesWith(current)) {
 				if (current instanceof Projectile) {
 					handleBeingHit((MovingElement) current);
 					current.handleBeingHit(this);
@@ -217,13 +225,13 @@ public class Player extends MovingElement{
 			}
 			if (hitter.getYPosition() == getBottomSide()) {
 				yKnockBack = Main.testValue * -1;
-				//System.out.println("YVEL");
+				// System.out.println("YVEL");
 			} else if (getYPosition() == hitter.getBottomSide()) {
 				yKnockBack = Main.testValue;
-				//System.out.println("YVEL-");
+				// System.out.println("YVEL-");
 			}
 		}
-		//System.out.println(toString() + "'s health is now: " + health);
+		// System.out.println(toString() + "'s health is now: " + health);
 		if (this.equals(GameController.getCurrentPlayer())) {
 			Main.getGameRootLayoutController().setLblPlayerHealthValue(health);
 		}
@@ -231,7 +239,6 @@ public class Player extends MovingElement{
 			GameController.getElementsToRemove().add(this);
 		}
 	}
-	
 
 	/**
 	 * @return the moveBehaviour
@@ -241,7 +248,8 @@ public class Player extends MovingElement{
 	}
 
 	/**
-	 * @param moveBehaviour the moveBehaviour to set
+	 * @param moveBehaviour
+	 *            the moveBehaviour to set
 	 */
 	public void setMoveBehaviour(Movable moveBehaviour) {
 		this.moveBehaviour = moveBehaviour;
@@ -250,10 +258,10 @@ public class Player extends MovingElement{
 
 	public void addSingleTurnXVel(double xVelIncrease) {
 		singleTurnXVel += xVelIncrease;
-		
+
 	}
 
 	public void addSingleTurnYVel(int yVelIncrease) {
-		singleTurnYVel += yVelIncrease;		
+		singleTurnYVel += yVelIncrease;
 	}
 }

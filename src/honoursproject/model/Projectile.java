@@ -94,9 +94,7 @@ public class Projectile extends MovingElement {
 			if (current instanceof Projectile && ((Projectile) current).shooter.equals(this.shooter)) {
 				continue;
 			}
-			if (getXPosition() >= current.getRightSide() || getRightSide() <= current.getXPosition()) {
-			} else if (getYPosition() >= current.getBottomSide() || getBottomSide() <= current.getYPosition()) {
-			} else {
+			if (collidesWith(current)) {
 				handleBeingHit((Element) current);
 				current.handleBeingHit(this);
 			}
