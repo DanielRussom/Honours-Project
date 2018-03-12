@@ -15,13 +15,16 @@ public class Spawner extends Element {
 
 	@Override
 	public void move() {
-				
+	}
+	
+	@Override
+	public void handleBeingHit(Element hitter) {
 	}
 
 	/**
 	 * Handles spawning an enemy at this spawner's location
 	 */
 	public void spawnEnemy() {
-		System.out.println("An enemy should be spawned!");
+		System.out.println("An enemy should be spawned at " + xPosition + ":" + yPosition);
 	}
 }

@@ -21,9 +21,11 @@ public class Wall extends Element {
 		this.image = tempImage;
 	}
 
+	@Override
 	public void move() {
 	}
 	
+	@Override
 	public void handleBeingHit(Element hitter) {
 	}
 }

@@ -85,6 +85,20 @@ public class GameController {
 	}
 
 	/**
+	 * Spawns an enemy at a random valid spawn point
+	 */
+	public static void spawnEnemy() {
+		ArrayList<Spawner> validSpawnPoints = new ArrayList<Spawner>();
+		for(Spawner currentSpawn: enemySpawnPoints) {
+			for(Element currentElement : activeElements) {
+				
+			}
+			//TODO Check if space is clears
+		}
+		
+	}
+	
+	/**
 	 * Returns the elements to remove ArrayList.
 	 * 
 	 * @return the elementsToRemove

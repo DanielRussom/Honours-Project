@@ -32,7 +32,6 @@ public abstract class Element implements Cloneable {
 	}
 
 	public Element() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Element(Node image) {
@@ -52,7 +51,7 @@ public abstract class Element implements Cloneable {
 	}
 	
 	/**
-	 * 
+	 * Handles this element's movement for the next frame
 	 */
 	public abstract void move();
 
