@@ -103,7 +103,6 @@ public class GameController {
 		Random rand = new Random();
 		int test = rand.nextInt(validSpawnPoints.size());
 		validSpawnPoints.get(test).spawnEnemy();
-		
 	}
 	
 	/**

@@ -1,7 +1,7 @@
 package honoursproject.model;
 
+import honoursproject.GameController;
 import honoursproject.Main;
-import honoursproject.model.movementpatterns.MovementDiag;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -26,5 +26,11 @@ public class Spawner extends Element {
 	 */
 	public void spawnEnemy() {
 		System.out.println("An enemy should be spawned at " + xPosition + ":" + yPosition);
+		Enemy enemy = new Enemy();
+		enemy.setXPosition(xPosition);
+		enemy.setYPosition(yPosition);
+		enemy.moveTo(enemy.getXPosition(), enemy.getYPosition());
+		GameController.addActiveElement(enemy);
+		Main.getGameScreenController().addNode(enemy.getImage());
 	}
 }
