@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import honoursproject.model.Element;
-import honoursproject.model.Enemy;
 import honoursproject.model.Player;
 import honoursproject.model.Spawner;
 
@@ -94,23 +93,29 @@ public class GameController {
 		ArrayList<Spawner> validSpawnPoints = new ArrayList<Spawner>();
 		// Iterates through all spawn points
 		for (Spawner currentSpawn : enemySpawnPoints) {
-			System.out.println(currentSpawn.getYPosition() + ":" + currentSpawn.getBottomSide());
+			// Checks if the current spawn point is valid to be used
 			if (isSpawnValid(currentSpawn)) {
 				validSpawnPoints.add(currentSpawn);
 			}
-
-			// TODO Weighted Spawn Points
+			// TODO Weighted Spawn Points?
 		}
+		// Exits the method if there are no valid spawn points
 		if (validSpawnPoints.size() == 0) {
-			System.out.println("No valid spawn points");
 			return;
 		}
-		// TODO Tidy
+		//Randomly selects a valid spawn point to use
 		Random rand = new Random();
-		int test = rand.nextInt(validSpawnPoints.size());
-		validSpawnPoints.get(test).spawnEnemy();
+		int spawnId = rand.nextInt(validSpawnPoints.size());
+		validSpawnPoints.get(spawnId).spawnEnemy();
 	}
 
+	/**
+	 * Checks if the passed in spawner is in a situation where it can spawn an enemy
+	 * 
+	 * @param spawner
+	 *            - the spawner to check the validity of
+	 * @return - if the spawner is valid to be used
+	 */
 	private static boolean isSpawnValid(Spawner spawner) {
 		// Iterates through each active element
 		for (Element currentElement : activeElements) {

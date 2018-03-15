@@ -25,11 +25,13 @@ public class Spawner extends Element {
 	 * Handles spawning an enemy at this spawner's location
 	 */
 	public void spawnEnemy() {
-		System.out.println("An enemy should be spawned at " + xPosition + ":" + yPosition);
+		// Creates a new enemy
 		Enemy enemy = new Enemy();
+		// Sets the enemy's position to the spawner's location
 		enemy.setXPosition(xPosition);
 		enemy.setYPosition(yPosition);
 		enemy.moveTo(enemy.getXPosition(), enemy.getYPosition());
+		// Adds the enemy to the game screen
 		GameController.addActiveElement(enemy);
 		Main.getGameScreenController().addNode(enemy.getImage());
 	}
