@@ -28,7 +28,7 @@ public class Player extends MovingElement {
 
 	public Player() {
 		ImageView tempImage = new ImageView(new Image(Main.class.getResourceAsStream("PlayerPH.png")));
-		damage = 5;
+		damage = 100;
 		tempImage.setFitHeight(50);
 		tempImage.setFitWidth(50);
 		this.image = tempImage;

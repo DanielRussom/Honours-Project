@@ -16,5 +16,10 @@
             <Image url="@../enemy.png" />
          </image>
       </ImageView>
+      <ImageView id="spawner" fitHeight="50.0" fitWidth="50.0" layoutX="90.0" layoutY="175.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Player2PH.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
