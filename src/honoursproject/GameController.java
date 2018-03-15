@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import honoursproject.model.Element;
+import honoursproject.model.Enemy;
 import honoursproject.model.Player;
 import honoursproject.model.Spawner;
 
@@ -89,22 +90,37 @@ public class GameController {
 	 * Spawns an enemy at a random valid spawn point
 	 */
 	public static void spawnEnemy() {
-		System.out.println("Triggered");
+		// Creates list to store valid spawn points
 		ArrayList<Spawner> validSpawnPoints = new ArrayList<Spawner>();
-		for(Spawner currentSpawn: enemySpawnPoints) {
-			for(Element currentElement : activeElements) {
-				if(!currentSpawn.collidesWith(currentElement)) {
-					validSpawnPoints.add(currentSpawn);
-				}
+		// Iterates through all spawn points
+		for (Spawner currentSpawn : enemySpawnPoints) {
+			System.out.println(currentSpawn.getYPosition() + ":" + currentSpawn.getBottomSide());
+			if (isSpawnValid(currentSpawn)) {
+				validSpawnPoints.add(currentSpawn);
 			}
-			//TODO Weighted Spawn Points
+
+			// TODO Weighted Spawn Points
 		}
-		//TODO Tidy
+		if (validSpawnPoints.size() == 0) {
+			System.out.println("No valid spawn points");
+			return;
+		}
+		// TODO Tidy
 		Random rand = new Random();
 		int test = rand.nextInt(validSpawnPoints.size());
 		validSpawnPoints.get(test).spawnEnemy();
 	}
-	
+
+	private static boolean isSpawnValid(Spawner spawner) {
+		// Iterates through each active element
+		for (Element currentElement : activeElements) {
+			if (spawner.collidesWith(currentElement)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	/**
 	 * Returns the elements to remove ArrayList.
 	 * 
