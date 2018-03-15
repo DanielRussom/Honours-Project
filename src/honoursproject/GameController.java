@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import honoursproject.model.Element;
+import honoursproject.model.Enemy;
 import honoursproject.model.Player;
 import honoursproject.model.Spawner;
 
@@ -14,6 +15,7 @@ public class GameController {
 	private static Player currentPlayer;
 	private static Player currentPlayer2;
 	public static ArrayList<Element> resetState = new ArrayList<Element>();
+	public static int minimumEnemyLimit = 1;
 
 	/**
 	 * Ends the current game
@@ -103,7 +105,7 @@ public class GameController {
 		if (validSpawnPoints.size() == 0) {
 			return;
 		}
-		//Randomly selects a valid spawn point to use
+		// Randomly selects a valid spawn point to use
 		Random rand = new Random();
 		int spawnId = rand.nextInt(validSpawnPoints.size());
 		validSpawnPoints.get(spawnId).spawnEnemy();
@@ -173,5 +175,22 @@ public class GameController {
 	public static void setCurrentPlayer2(Player currentPlayer2) {
 		GameController.currentPlayer2 = currentPlayer2;
 		getActiveElements().add(currentPlayer2);
+	}
+
+	/**
+	 * Gets the number of active enemies in the game
+	 * 
+	 * @return - number of enemies
+	 */
+	public static int getNumberOfEnemies() {
+		int numberOfEnemies = 0;
+		// Iterates through the active elements
+		for (Element current : activeElements) {
+			// Increments the counter for each enemy
+			if (current instanceof Enemy) {
+				numberOfEnemies++;
+			}
+		}
+		return numberOfEnemies;
 	}
 }

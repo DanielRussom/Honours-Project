@@ -8,7 +8,6 @@ import javafx.scene.image.ImageView;
 public class Enemy extends Player{
 
 	public Enemy() {
-		//TODO Seperate constructor to pass in enemy image?
 		ImageView tempImage = new ImageView(new Image(Main.class.getResourceAsStream("enemy.png")));
 		tempImage.setFitHeight(50);
 		tempImage.setFitWidth(50);

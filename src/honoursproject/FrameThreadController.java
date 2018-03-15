@@ -28,7 +28,7 @@ public class FrameThreadController extends AnimationTimer {
 				return;
 			}
 		}
-		//TODO Tidy evolver stuff
+		// TODO Tidy evolver stuff
 		// Checks if the game is ready to start
 		if (setupTime > 0) {
 			// Decrements the setup time
@@ -104,6 +104,12 @@ public class FrameThreadController extends AnimationTimer {
 		GameController.getActiveElements().removeAll(GameController.getElementsToRemove());
 		for (Element currentNode : GameController.getElementsToRemove()) {
 			Main.getGameScreenController().removeNode(currentNode.getImage());
+		}
+		
+		// Checks if there are enough enemies in the game
+		if (GameController.getNumberOfEnemies() < GameController.minimumEnemyLimit) {
+			// Spawns an enemy
+			GameController.spawnEnemy();
 		}
 	}
 }
